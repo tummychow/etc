@@ -27,14 +27,7 @@ super + {d,f}
 super + {_,shift+,ctrl+} {h,j,k,l}
   bspc window focused -{f,s,p} {left,down,up,right}
 
-# start evilvte
 super + z
-  evilvte
-
-# start st
-super + x
   st
-
-# lock
-super + c
+super + x
   i3lock
