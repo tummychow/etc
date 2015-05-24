@@ -36,10 +36,10 @@ set_ps1() {
     if [[ "${EUID}" == 0 ]] ; then
       # print the user in red
       # $USER set by login
-      printf '%b[%b%s%b]%s' "${neut}" '\[\e[91m\]' "${USER}" "${neut}" "${sep}"
+      printf '%b[%b%s%b]%s' "${neut}" '\[\e[91m\]' '\u' "${neut}" "${sep}"
     else
       # print the user in green
-      printf '%b[%b%s%b]%s' "${neut}" '\[\e[92m\]' "${USER}" "${neut}" "${sep}"
+      printf '%b[%b%s%b]%s' "${neut}" '\[\e[92m\]' '\u' "${neut}" "${sep}"
     fi
   fi
 
