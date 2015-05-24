@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+bspc config border_width 2
+bspc config window_gap 4
+
+bspc config top_padding 20
+bspc config bottom_padding 0
+bspc config left_padding 0
+bspc config right_padding 0
+
+bspc config split_ratio 0.55
+
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
+bspc config pointer_follows_monitor true
+bspc config focus_by_distance true
+
+bspc config normal_border_color #404040
+bspc config focused_border_color #c0c0c0
+bspc config presel_border_color #000000
+bspc config auto_cancel true
+
+# give the first monitor a single desktop
+# named 1
+# this also resets the desktop, so that
+# border/gap/padding config applies to it
+bspc monitor ^1 -d 1

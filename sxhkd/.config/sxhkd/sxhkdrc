@@ -1,0 +1,40 @@
+# exit x
+super + Escape
+  bspc quit
+
+# close or kill the focused window
+# grave is the keysym name for backtick
+super + {_,shift+} grave
+  bspc window focused -{c,k}
+
+# switch window between float and tile
+super + s
+  bspc window focused -t floating
+
+# cycle desktop between standard tiled
+# behavior and monocle layout
+super + a
+  bspc desktop focused -l next
+
+# cycle focus through older/newer windows
+super + {d,f}
+  bspc window {next,prev} -f
+
+# super+dir to move focus in that direction
+# super+shift+dir to swap with the window in that direction
+# super+ctrl+dir to set preselect in that direction (the next
+# new window will be opened there)
+super + {_,shift+,ctrl+} {h,j,k,l}
+  bspc window focused -{f,s,p} {left,down,up,right}
+
+# start evilvte
+super + z
+  evilvte
+
+# start st
+super + x
+  st
+
+# lock
+super + c
+  i3lock

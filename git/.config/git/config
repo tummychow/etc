@@ -1,0 +1,87 @@
+[user]
+	name = tummychow
+	email = tummychow@users.noreply.github.com
+[core]
+	editor = nano
+	pager = less -S -+XF
+	autocrlf = input
+	excludesfile = /home/sjung/.config/git/ignore
+[branch]
+	autosetupmerge = true
+[log]
+	date = short
+
+[color]
+	ui = true
+[color "diff"]
+	old = red reverse bold
+	new = green reverse bold
+	whitespace = magenta reverse bold
+[color "branch"]
+	current = yellow bold
+[color "status"]
+	branch = yellow bold
+	nobranch = yellow bold
+	added = green
+	changed = red
+	untracked = yellow
+
+[alias]
+	# brevity aliases
+	st = status
+	sts = status -sb
+	cm = commit
+	cma = commit --all
+	# stands for "fixup"
+	fu = commit --amend --no-edit
+	fua = commit --amend --no-edit --all
+	pf = push --force
+	co = checkout
+	df = diff --color-words
+	dc = diff --color-words --cached
+	ds = diff --color-words --staged
+	br = branch
+	brv = branch -vv
+
+	# prints logs in a particular, brief format (see below)
+	lg = log --date=short --pretty=twoline
+
+	# g doesn't stand for anything, it's just the easiest character to retype
+	lgg = log --date=short --pretty=twoline -7
+
+	# q stands for "queued" as in "queued for next push"
+	# @{u} is a shorthand for "the remote that is being tracked by HEAD"
+	# so this log shows the range of commits from our remote to where we are now
+	lgq = log --date=short --pretty=twoline @{u}..
+
+	# m stands for "medium"
+	lgm = log --pretty=medium --stat
+
+	# this command prints logs for all commits whose sha1 starts with a given argument, eg
+	# git abbr ad
+	# might print out the commits ad331c9 and ad4603d
+	# it's useful for finding hash collisions in big projects
+	# we recycle the lg alias above as the logging style
+        abbr = "!sh -c 'git rev-list --all | grep ^$1 | while read commit; do git --no-pager lg -n1 $commit; done' -"
+
+	# rewrite a tag's message without bumping its date
+	tag-amend = "!GIT_COMMITTER_DATE=\"$(git log -1 --format=%ai $1)\" git tag -af \"$2\" \"$2\""
+[pretty]
+	# twoline looks like this:
+	#  * abcdefg [name @ date] (HEAD)
+	#            commit message title
+	# the square brackets are designed to match my bash profile (the refs are wrapped in parentheses, can't be changed)
+	# the hash is in bright red, the name is green, the date is teal, the refs are brown
+	# the colors were chosen specifically to avoid blurring into my bash prompt lol
+	twoline = tformat:%C(red bold)%h%Creset [%C(green)%an%Creset @ %C(cyan)%ad%Creset]%C(yellow)%d%Creset%n        %s
+
+	# similar to the above, but title in the middle instead of on second line
+	# also it's "format" instead of "tformat" to prevent excess newlines
+	onetwoline = format:%C(red bold)%h%Creset %s [%C(green)%an%Creset @ %C(cyan)%ad%Creset]%C(yellow)%d%Creset
+
+[columns]
+	ui = auto
+[push]
+	default = upstream
+[pager]
+	stash = false
