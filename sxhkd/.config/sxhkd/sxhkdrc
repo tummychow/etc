@@ -27,6 +27,15 @@ super + {d,f}
 super + {_,shift+,ctrl+} {h,j,k,l}
   bspc window focused -{f,s,p} {left,down,up,right}
 
+# super+alt+dir to expand that edge
+# super+shift+alt+dir to shrink the opposite edge
+# eg super+alt+l expands the right edge, so you expect
+# super+alt+shift+h to shrink it
+super + alt + {h,j,k,l}
+  bspc window focused -e {left -64,down +64,up -64,right +64}
+super + alt + shift + {h,j,k,l}
+  bspc window focused -e {right -64,up +64,down -64,left +64}
+
 super + z
   st
 super + x
