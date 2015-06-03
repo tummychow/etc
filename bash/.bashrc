@@ -128,5 +128,8 @@ HISTCONTROL=ignoreboth
 
 [[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 
-# clear the return value of any nonzero tests
-true
+# enable neovim true color
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+# use non-blinking beam as cursor
+printf '\e[6 q'
