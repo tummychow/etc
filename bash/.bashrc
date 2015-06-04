@@ -36,15 +36,15 @@ set_ps1() {
     if [[ "${EUID}" == 0 ]] ; then
       # print the user in red
       # $USER set by login
-      printf '%b[%b%s%b]%s' "${neut}" '\[\e[91m\]' '\u' "${neut}" "${sep}"
+      printf '%b[%b%s%b]%s' "${neut}" '\[\e[31m\]' '\u' "${neut}" "${sep}"
     else
       # print the user in green
-      printf '%b[%b%s%b]%s' "${neut}" '\[\e[92m\]' '\u' "${neut}" "${sep}"
+      printf '%b[%b%s%b]%s' "${neut}" '\[\e[32m\]' '\u' "${neut}" "${sep}"
     fi
   fi
 
   # print pwd in cyan
-  printf '%b[%b%s%b]%s' "${neut}" '\[\e[96m\]' '\w' "${neut}" "${sep}"
+  printf '%b[%b%s%b]%s' "${neut}" '\[\e[36m\]' '\w' "${neut}" "${sep}"
 
   if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == 'true' ]] ; then
     # find current checkout branch
@@ -76,11 +76,11 @@ set_ps1() {
     printf '%b[%b%s' "${neut}" "\[\e[93m\]" "${checkout}"
     if (( unstaged + uncommitted + untracked + unresolved + stash )) ; then
       printf '%b|' "${neut}"
-      (( unresolved )) && printf '%b=%s' '\[\e[95m\]' "${unresolved}" # purple
+      (( unresolved )) && printf '%b=%s' '\[\e[35m\]' "${unresolved}" # purple
       (( untracked )) && printf '%b?%s' '\[\e[33m\]' "${untracked}" # brown
       (( unstaged )) && printf '%bx%s' '\[\e[31m\]' "${unstaged}" # red
       (( uncommitted )) && printf '%b^%s' '\[\e[32m\]' "${uncommitted}" # green
-      (( stash )) && printf '%b+%s' '\[\e[36m\]' "${stash}" # cyan
+      (( stash )) && printf '%b+%s' '\[\e[34m\]' "${stash}" # cyan
     fi
     printf '%b]%s' "${neut}" "${sep}"
   fi
