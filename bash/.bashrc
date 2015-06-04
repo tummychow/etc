@@ -130,6 +130,3 @@ HISTCONTROL=ignoreboth
 
 # enable neovim true color
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-# use non-blinking beam as cursor
-printf '\e[6 q'
