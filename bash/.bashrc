@@ -58,14 +58,19 @@ set_ps1() {
 
     # parse the null-separated output of git status
     local -i unstaged=0 uncommitted=0 untracked=0 unresolved=0
-    local statuscode
+    local statuscode skipnext
     while read -rd '' ; do
+      [[ -n "${skipnext}" ]] && skipnext= && continue
       statuscode="${REPLY:0:2}"
       [[ "${statuscode}" == '??' ]] && let untracked++
       # remember, bash regexes in the =~ operator cannot be quoted
       [[ "${statuscode}" =~ \ [MDARC]|[\ MARC][MD] ]] && let unstaged++
       [[ "${statuscode}" =~ [MARC][MD\ ]|D[M\ ] ]] && let uncommitted++
       [[ "${statuscode}" =~ U|DD|AA ]] && let unresolved++
+      # if the file was renamed, then git will have the new name on this line
+      # and the old name on the next line; we want to skip that old name since
+      # it could be mis-parsed as a status code
+      [[ "${statuscode}" =~ R ]] && skipnext=true
     done < <(git status -z)
 
     # hack to check the number of stashes
