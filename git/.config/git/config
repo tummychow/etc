@@ -39,7 +39,6 @@
 	co = checkout
 	df = diff --color-words
 	dc = diff --color-words --cached
-	ds = diff --color-words --staged
 	br = branch
 	brv = branch -vv
 
