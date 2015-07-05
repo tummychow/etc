@@ -131,7 +131,6 @@ alias cower='cower --color=auto'
 HISTSIZE=100000
 HISTCONTROL=ignoreboth
 
-[[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
-
-# enable neovim true color
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
+if [[ -r /usr/share/bash-completion/bash_completion ]] ; then
+  source /usr/share/bash-completion/bash_completion
+fi
