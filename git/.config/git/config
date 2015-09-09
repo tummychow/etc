@@ -41,17 +41,12 @@
 	dc = diff --color-words --cached
 	br = branch
 	brv = branch -vv
+	ftpa = fetch --all --prune
+	rb = rebase
+	rbi = rebase -i
 
 	# prints logs in a particular, brief format (see below)
 	lg = log --date=short --pretty=twoline
-
-	# g doesn't stand for anything, it's just the easiest character to retype
-	lgg = log --date=short --pretty=twoline -7
-
-	# q stands for "queued" as in "queued for next push"
-	# @{u} is a shorthand for "the remote that is being tracked by HEAD"
-	# so this log shows the range of commits from our remote to where we are now
-	lgq = log --date=short --pretty=twoline @{u}..
 
 	# m stands for "medium"
 	lgm = log --pretty=medium --stat
@@ -84,3 +79,5 @@
 	default = upstream
 [pager]
 	stash = false
+[rerere]
+	enabled = true
