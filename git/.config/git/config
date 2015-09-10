@@ -44,6 +44,7 @@
 	ftpa = fetch --all --prune
 	rb = rebase
 	rbi = rebase -i
+	rph = rev-parse HEAD
 
 	# prints logs in a particular, brief format (see below)
 	lg = log --date=short --pretty=twoline
