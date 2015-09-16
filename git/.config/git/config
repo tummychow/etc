@@ -29,7 +29,7 @@
 [alias]
 	# brevity aliases
 	st = status
-	sts = status -sb
+	s = status -sb
 	cm = commit
 	cma = commit --all
 	# stands for "fixup"
@@ -44,13 +44,13 @@
 	ftpa = fetch --all --prune
 	rb = rebase
 	rbi = rebase -i
+	rp = rev-parse
 	rph = rev-parse HEAD
 
 	# prints logs in a particular, brief format (see below)
-	lg = log --date=short --pretty=twoline
-
+	l = log --date=short --pretty=twoline
 	# m stands for "medium"
-	lgm = log --pretty=medium --stat
+	lm = log --pretty=medium --stat --date=local
 
 	# this command prints logs for all commits whose sha1 starts with a given argument, eg
 	# git abbr ad
