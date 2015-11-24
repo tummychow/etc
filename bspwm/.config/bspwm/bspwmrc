@@ -24,6 +24,12 @@ bspc config focused_border_color '#c0c0c0'
 bspc config presel_border_color '#000000'
 bspc config auto_cancel true
 
+# the default prefix is W, which you might not
+# expect if you didn't know it was the default
+# this actually returns -1 (not sure why) but
+# it does work, so I silence the exit code
+bspc config status_prefix '' || true
+
 # give the first monitor its desktops:
 # Terminal, Web, Misc
 # this also resets the desktop, so that
