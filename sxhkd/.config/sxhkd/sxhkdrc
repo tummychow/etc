@@ -44,7 +44,14 @@ super + !button{1-3}
 super + @button{1-3}
   bspc pointer -u
 
+# "dropdown terminal"
+# are we on the terminal desktop? if so focus the last desktop
+# else switch to the terminal desktop, and spawn a terminal there if it's empty
 super + z
+  [[ "$(bspc query -D -d focused)" == 'T' ]] && bspc desktop last -f && exit ;\
+  bspc desktop T -f ;\
+  [[ -z "$(bspc query -W -d T)" ]] && st
+super + shift + z
   st
 super + c
   i3lock
