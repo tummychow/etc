@@ -9,7 +9,7 @@ set nowrap
 unset softwrap
 
 syntax "gitcm" ".git/(.*/)?COMMIT_EDITMSG$"
-color brightred "^.{72,}.+$"
+color brightred "^[^#].{71,}.+$"
 color green "^# Changes to be committed:"
 color red "^# Changes not staged for commit:"
 color yellow "^# Untracked files:"
