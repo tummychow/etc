@@ -34,4 +34,6 @@ bspc config status_prefix '' || true
 # Terminal, Web, Misc
 # this also resets the desktop, so that
 # border/gap/padding config applies to it
-bspc monitor ^1 -d T W M
+bspc monitor ^1 -d W T M
+
+bspc rule -a Firefox desktop=W
