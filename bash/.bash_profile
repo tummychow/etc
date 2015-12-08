@@ -2,6 +2,7 @@
 [[ $- != *i* ]] && return
 
 # modify the PATH here
+[[ -d ~/bin ]] && export PATH=~/bin:$PATH
 
 [[ -r ~/.bashrc ]] && source ~/.bashrc
 
