@@ -52,14 +52,13 @@ super + Tab
 super + q
   rofi -show run
 
-# "dropdown terminal"
-# are we on the terminal desktop? if so focus the last desktop
-# else switch to the terminal desktop, and spawn a terminal there if it's empty
 super + z
-  [[ "$(bspc query -D -d focused)" == 'T' ]] && bspc desktop last -f && exit ;\
-  bspc desktop T -f ;\
-  [[ -z "$(bspc query -W -d T)" ]] && st
+  ~/.config/sxhkd/open-or-switch T st
 super + shift + z
   st
+super + x
+  ~/.config/sxhkd/open-or-switch W firefox
+super + shift + x
+  firefox
 super + c
   i3lock

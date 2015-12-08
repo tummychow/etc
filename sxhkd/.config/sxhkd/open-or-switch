@@ -1,0 +1,39 @@
+#!/usr/bin/bash
+# usage:
+#   open-or-switch <desktop-name> <program> [<args>...]
+#
+# useful when you have a desktop dedicated to a single long
+# lived program, and you want to switch to/from it
+# the expected behavior is "if i'm not in front of the target
+# program, then put me there, otherwise put me in front of
+# whatever i was just looking at"
+# if you are on the target desktop and it's empty:
+#   open the target program
+# if you are on the target desktop and it's not empty:
+#   switch to the last desktop (or the next desktop, if no
+#   last desktop exists)
+# if you are not on the target desktop:
+#   switch to it, and open the target program if it's empty
+
+set -e
+
+target="${1}"
+shift
+focused="$(bspc query -D -d focused)"
+windows="$(bspc query -W -d "${target}")"
+
+if [[ "${target}" == "${focused}" ]] ; then
+  if [[ -z "${windows}" ]] ; then
+    exec "$@"
+  else
+    # if we just started up, we might not have any "last"
+    # desktop to go to! it's confusing to do nothing, so
+    # rotate to the next one in order
+    bspc desktop last -f || bspc desktop next -f
+  fi
+else
+  bspc desktop "${target}" -f
+  if [[ -z "${windows}" ]] ; then
+    exec "$@"
+  fi
+fi
