@@ -19,6 +19,9 @@ super + a
 # cycle focus through older/newer windows
 super + {d,f}
   bspc window {next,prev} -f
+# cycle through older/newer desktops
+super + alt + {d,f}
+  bspc desktop {next,prev} -f
 
 # super+dir to move focus in that direction
 # super+shift+dir to swap with the window in that direction
