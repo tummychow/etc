@@ -7,5 +7,5 @@
 [[ -r ~/.bashrc ]] && source ~/.bashrc
 
 if [[ -z $DISPLAY && $XDG_VTNR == 1 && -r ~/.xinitrc ]] ; then
-  startx
+  startx -- -ardelay 200 -arinterval 30
 fi

@@ -2,7 +2,6 @@
 set -e
 
 xsetroot -cursor_name left_ptr
-xset r rate 200 30
 
 sxhkd -f 25 &
 
