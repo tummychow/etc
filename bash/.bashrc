@@ -98,6 +98,16 @@ set_ps1() {
     printf '%b%s' '\[\e[1;37m\]' '\$'
   fi
   printf '%b ' "${neut}"
+
+  # set the title of the terminal
+  # \e] initiates an Operating System Command (OSC), whose interpretation is
+  # system-dependent
+  # \a is alert (aka bell, \007 or \x07), it terminates the OSC string
+  # xterm interprets the string as a semicolon-separated list, it will set the
+  # title when the first argument is 2
+  # the second argument is the string that shall be the title; we can use the
+  # special \w escape since we are in PS1
+  printf '%b%s%b' '\[\e]2;' '\w' '\a\]'
 }
 PROMPT_COMMAND='PS1=$(set_ps1)'
 PS2='> '
