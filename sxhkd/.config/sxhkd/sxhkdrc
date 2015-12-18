@@ -51,6 +51,8 @@ super + Tab
   rofi -show window
 super + q
   rofi -show run
+super + w
+  rofi -show pass
 
 super + z
   ~/.config/sxhkd/open-or-switch T st

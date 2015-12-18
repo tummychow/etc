@@ -6,7 +6,7 @@ xsetroot -cursor_name left_ptr
 sxhkd -f 25 &
 
 xrdb -merge <<EOF
-rofi.modi: run,window
+rofi.modi: run,window,pass:rofi-pass
 rofi.terminal: st
 rofi.fuzzy: true
 rofi.sidebar-mode: true

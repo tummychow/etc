@@ -38,3 +38,4 @@ bspc monitor ^1 -d W T M
 bspc rule -a Firefox desktop=W
 bspc rule -a mpv floating=on
 bspc rule -a sxiv floating=on
+bspc rule -a Pinentry floating=on
