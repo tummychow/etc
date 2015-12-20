@@ -2,7 +2,7 @@
 	name = tummychow
 	email = tummychow@users.noreply.github.com
 [core]
-	editor = nano
+	editor = nvim -c startinsert
 	pager = less -S -+XF
 	autocrlf = input
 	excludesfile = /home/sjung/.config/git/ignore
