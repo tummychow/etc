@@ -76,4 +76,6 @@ rofi.kb-custom-18: Alt+Shift+8
 rofi.kb-custom-19: Alt+Shift+9
 EOF
 
+xset s off
+xset dpms 0 0 600
 exec bspwm
