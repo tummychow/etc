@@ -1,0 +1,98 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+/* derived from melbourne by noha-ra
+ * http://noha-ra.deviantart.com/art/Melbourne-Firefox-CSS-FF-29-and-above-473887761 */
+
+/* remove internal border */
+#main-window:not([chromehidden*="toolbar"])[sizemode="normal"] {
+  margin: -1px !important;
+}
+
+/* this prevents the bottom of the tab bar from bleeding
+ * onto the top of the nav bar */
+#TabsToolbar {
+  margin-bottom: 0px !important;
+}
+
+/* background color of scroll and all-tabs buttons */
+#TabsToolbar .tabbrowser-arrowscrollbox,
+#alltabs-button {
+  background: rgba(245,245,245,1) !important;
+}
+/* this removes a slight 1px edge on the all-tabs button */
+#alltabs-button {
+  margin-bottom: 0px !important;
+}
+/* removes some empty padding in the scrollable tab bar,
+ * just before the first tab and after the last tab */
+#TabsToolbar .tabbrowser-arrowscrollbox > .arrowscrollbox-scrollbox {
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+}
+
+/* styling of individual tabs */
+#TabsToolbar .tabbrowser-tab {
+  background-clip: padding-box !important;
+  color: rgba(0,0,0,1) !important;
+  background: rgba(180,180,180,1) !important;
+}
+#TabsToolbar .tabbrowser-tab[selected] {
+  color: rgba(0,0,0,1) !important;
+  background: rgba(245,245,245,1) !important; 
+}
+#TabsToolbar .tabbrowser-tab:hover:not([selected]) {
+    background: rgba(210,210,210,1) !important;
+}
+/* highlight unloaded tab names using a tabmixplus attribute
+ * i find the background highlighting in tabmixplus is rounded
+ * on the top corners, so i prefer to set the styles here */
+#TabsToolbar .tabbrowser-tab[tabmix_tabState="unloaded"] .tab-text {
+  color: rgba(170,0,0,1) !important;
+}
+
+/* removes the australis curvy tab outlines on hover*/
+#TabsToolbar .tab-background {
+  background: transparent !important;
+}
+#TabsToolbar .tab-background-start,
+#TabsToolbar .tab-background-end {
+  display: none !important;
+}
+#TabsToolbar .tab-background-middle {
+  background: transparent !important;
+  /* these box model fixes ensure that the tab's clickable area
+   * corresponds to the area on screen
+   * if you change them, be sure to hover over the edges of a
+   * tab to make sure they still highlight properly! */
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  margin: 0px !important;
+  border: 0px !important;
+}
+
+/* nav bar */
+#nav-bar {
+  background-color: rgba(245,245,245,1) !important;
+  /* these two are needed to remove a very subtle white edge
+   * above the background-colored navbar */
+  background-image: unset !important;
+  box-shadow: unset !important;
+  /* this margin is necessary so the bottom edge of the tab bar
+   * does not bleed onto the nav bar */
+  margin-top: 0px !important;
+}
+/* have to hack around a slightly more specific selector from
+ * browser.css, that also has !important */
+#TabsToolbar:not([collapsed="true"]) + #nav-bar {
+  border-top: none !important;
+}
+
+#forward-button {
+  /* prevent it from hiding when disabled */
+  margin-left: 0 !important;
+  /* make its border uniform with the rest of the URL bar
+   * there's a very subtle 1px inner border that's slightly darker
+   * than the button itself, but i can't tell where it's coming
+   * from. might even be part of the image... will fix later */
+  border: 1px solid !important;
+  border-color: rgba(0,0,0,0.32) !important;
+}
