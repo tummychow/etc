@@ -54,6 +54,15 @@ super + q
 super + w
   rofi -show pass
 
+# TODO: use notify-send to signal the creation of the screenshot,
+# clicking the notification should show it in sxiv
+super + Print
+  maim -i $(bspc query -w focused -W) ~/"maim-$(date +%F-%T).png"
+# have to trigger on release of the key, otherwise the release
+# event causes slop to cancel itself
+super + shift + @Print
+  maim -s ~/"maim-$(date +%F-%T).png"
+
 super + z
   ~/.config/sxhkd/open-or-switch T st
 super + shift + z
