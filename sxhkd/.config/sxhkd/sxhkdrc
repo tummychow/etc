@@ -63,4 +63,4 @@ super + x
 super + shift + x
   firefox
 super + c
-  i3lock
+  i3lock -d -i ~/.config/sxhkd/i3lock.png
