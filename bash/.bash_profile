@@ -6,6 +6,7 @@
 
 # set any other useful envars
 export PASSWORD_STORE_CLIP_TIME=5
+export EDITOR=nvim
 
 [[ -r ~/.bashrc ]] && source ~/.bashrc
 
