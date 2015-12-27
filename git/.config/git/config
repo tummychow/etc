@@ -46,6 +46,7 @@
 	rbi = rebase -i
 	rp = rev-parse
 	rph = rev-parse HEAD
+	root = rev-parse --show-toplevel
 
 	# prints logs in a particular, brief format (see below)
 	l = log --date=short --pretty=twoline
