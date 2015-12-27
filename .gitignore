@@ -2,4 +2,4 @@
 /ranger/.config/ranger/bookmarks
 /ranger/.config/ranger/history
 
-*.png
+/sxhkd/.config/sxhkd/i3lock.png
