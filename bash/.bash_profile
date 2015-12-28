@@ -7,6 +7,8 @@
 # set any other useful envars
 export PASSWORD_STORE_CLIP_TIME=5
 export EDITOR=nvim
+# for mpc
+export MPD_HOST=~/.local/share/mpd/socket
 
 [[ -r ~/.bashrc ]] && source ~/.bashrc
 
