@@ -77,8 +77,11 @@
 
 [columns]
 	ui = auto
+[stash]
+	showPatch = true
 [push]
 	default = upstream
+	recurseSubmodules = check
 [pager]
 	stash = false
 [rerere]
