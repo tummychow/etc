@@ -6,6 +6,8 @@
 	pager = less -S -+XF
 	autocrlf = input
 	excludesfile = /home/sjung/.config/git/ignore
+[sequence]
+	editor = nvim
 [branch]
 	autosetupmerge = true
 [log]
