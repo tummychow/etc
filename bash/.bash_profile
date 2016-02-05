@@ -1,14 +1,16 @@
 # do nothing unless interactive
 [[ $- != *i* ]] && return
 
-# modify the PATH here
-[[ -d ~/bin ]] && export PATH=~/bin:$PATH
-
 # set any other useful envars
 export PASSWORD_STORE_CLIP_TIME=5
 export EDITOR=nvim
+export GOPATH=~/code/go
 # for mpc
 export MPD_HOST=~/.local/share/mpd/socket
+
+# modify the PATH here
+[[ -d ~/bin ]] && export PATH=~/bin:$PATH
+[[ -d "$GOPATH/bin" ]] && export PATH=$PATH:"$GOPATH/bin"
 
 [[ -r ~/.bashrc ]] && source ~/.bashrc
 
