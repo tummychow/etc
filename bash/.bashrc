@@ -132,7 +132,7 @@ elif [[ -r '/etc/DIR_COLORS' ]] ; then
   eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
-alias ls='ls --color=auto'
+alias ls='ls --quoting-style=literal --color=auto'
 alias dir='dir --color=auto'
 alias grep='grep --color=auto'
 alias dmesg='dmesg --color'
