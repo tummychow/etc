@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-xsetroot -cursor_name left_ptr
-
 sxhkd -f 25 &
 
 xrdb -merge <<EOF
+Xcursor.theme: Adwaita
+Xcursor.size: 32
+
 rofi.modi: run,window,pass:rofi-pass
 rofi.terminal: st
 rofi.fuzzy: true
@@ -78,4 +79,6 @@ EOF
 
 xset s off
 xset dpms 0 0 600
+xsetroot -cursor_name left_ptr
+
 exec bspwm
