@@ -20,7 +20,7 @@ set -e
 target="${1}"
 shift
 focused="$(bspc query -D -d focused)"
-windows="$(bspc query -W -d "${target}")"
+windows="$(bspc query -N -d "${target}")"
 
 if [[ "${target}" == "${focused}" ]] ; then
   if [[ -z "${windows}" ]] ; then

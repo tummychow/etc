@@ -5,11 +5,17 @@ super + Escape
 # close or kill the focused window
 # grave is the keysym name for backtick
 super + {_,shift+} grave
-  bspc window focused -{c,k}
+  bspc node focused -{c,k}
 
 # switch window between float and tile
+# note, if the window was spawned in a floating state, its lastState
+# will also be floating (can be confirmed with query -T), therefore
+# node -t ~floating will not work
+# we have to manually check in case both the current and last states
+# are the same, and toggle accordingly
 super + s
-  bspc window focused -t floating
+  cur=$(bspc query -T -n focused | ruby -rjson -e 'puts JSON.parse(STDIN.read).dig("client", "state")') ; \
+  if [[ "${cur}" == 'tiled' ]] ; then bspc node -t floating ; else bspc node -t tiled ; fi
 
 # cycle desktop between standard tiled
 # behavior and monocle layout
@@ -18,32 +24,40 @@ super + a
 
 # cycle focus through older/newer windows
 super + {d,f}
-  bspc window {next,prev} -f
+  bspc node {next,prev} -f
 # cycle through older/newer desktops
 super + alt + {d,f}
   bspc desktop {next,prev} -f
 
 # super+dir to move focus in that direction
 # super+shift+dir to swap with the window in that direction
+super + {_,shift+} {h,j,k,l}
+  bspc node focused -{f,s} {west,south,north,east}
+
 # super+ctrl+dir to set preselect in that direction (the next
 # new window will be opened there)
-super + {_,shift+,ctrl+} {h,j,k,l}
-  bspc window focused -{f,s,p} {left,down,up,right}
+# you could parse the JSON with jq or JSON.sh, but i can't be
+# bothered to install those things
+# ruby's new Hash#dig (introduced in 2.3) solves the problem
+# nicely
+super + ctrl + {h,j,k,l}
+  dir={west,south,north,east} ; \
+  cur=$(bspc query -T -n focused | ruby -rjson -e 'puts JSON.parse(STDIN.read).dig("presel", "splitDir")') ; \
+  [[ "${dir}" == "${cur}" ]] && dir="cancel" ; \
+  bspc node focused -p "${dir}"
 
 # super+alt+dir to expand that edge
 # super+shift+alt+dir to shrink the opposite edge
 # eg super+alt+l expands the right edge, so you expect
 # super+alt+shift+h to shrink it
 super + alt + {h,j,k,l}
-  bspc window focused -e {left -64,down +64,up -64,right +64}
+  bspc node {@west -r -64,@south -r +64,@north -r -64,@east -r +64}
 super + alt + shift + {h,j,k,l}
-  bspc window focused -e {right -64,up +64,down -64,left +64}
+  bspc node {@east -r -64,@north -r +64,@south -r -64,@west -r +64}
 
 # mouse move/resize
 super + button{1-3}
   bspc pointer -g {move,resize_side,resize_corner}
-super + !button{1-3}
-  bspc pointer -t %i %i
 super + @button{1-3}
   bspc pointer -u
 
@@ -57,7 +71,7 @@ super + w
 # TODO: use notify-send to signal the creation of the screenshot,
 # clicking the notification should show it in sxiv
 super + Print
-  maim -i $(bspc query -w focused -W) ~/"maim-$(date +%F-%T).png"
+  maim -i $(bspc query -n focused -N) ~/"maim-$(date +%F-%T).png"
 # have to trigger on release of the key, otherwise the release
 # event causes slop to cancel itself
 super + shift + @Print
