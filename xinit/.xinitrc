@@ -20,10 +20,10 @@ rofi.padding: 0
 rofi.bw: 2
 
 rofi.color-enabled: true
-rofi.color-normal: #202020, #b0b0b0, #303030, #b0b0b0, #202020
-rofi.color-active: #202020, #40a0ff, #303030, #0070c4, #ffffff
-rofi.color-urgent: #202020, #ff4040, #303030, #b03030, #ffffff
-rofi.color-window: #202020, #b0b0b0
+rofi.color-normal: #2b303b, #c0c5ce, #343d46, #c0c5ce, #2b303b
+rofi.color-active: #2b303b, #a3be8c, #343d46, #a3be8c, #2b303b
+rofi.color-urgent: #2b303b, #bf616a, #343d46, #bf616a, #2b303b
+rofi.color-window: #2b303b, #c0c5ce
 
 rofi.kb-primary-paste:
 rofi.kb-secondary-paste: Control+v
