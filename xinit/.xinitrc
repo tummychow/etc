@@ -7,7 +7,7 @@ xrdb -merge <<EOF
 Xcursor.theme: Adwaita
 Xcursor.size: 32
 
-rofi.modi: run,window,pass:rofi-pass
+rofi.modi: window,run,pass:rofi-pass
 rofi.terminal: st
 rofi.fuzzy: true
 rofi.sidebar-mode: true
