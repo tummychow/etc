@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 # usage:
-#   open-or-switch <desktop-name> <program> [<args>...]
+#   open-or-switch <desktop-name> [<program> [<args>...]]
 #
 # useful when you have a desktop dedicated to a single long
 # lived program, and you want to switch to/from it
@@ -14,6 +14,10 @@
 #   last desktop exists)
 # if you are not on the target desktop:
 #   switch to it, and open the target program if it's empty
+#
+# if you do not specify a program at all, then this script
+# simply switches between the specified desktop and the last
+# desktop
 
 set -e
 
@@ -23,7 +27,7 @@ focused="$(bspc query -D -d focused)"
 windows="$(bspc query -N -d "${target}")"
 
 if [[ "${target}" == "${focused}" ]] ; then
-  if [[ -z "${windows}" ]] ; then
+  if [[ -z "${windows}" && -n "$@" ]] ; then
     exec "$@"
   else
     # if we just started up, we might not have any "last"
@@ -33,7 +37,7 @@ if [[ "${target}" == "${focused}" ]] ; then
   fi
 else
   bspc desktop "${target}" -f
-  if [[ -z "${windows}" ]] ; then
+  if [[ -z "${windows}" && -n "$@" ]] ; then
     exec "$@"
   fi
 fi
