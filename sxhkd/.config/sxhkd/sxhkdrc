@@ -2,6 +2,7 @@
 # - ruby 2.3 (for Hash#dig to consume JSON from bspc query -T)
 # - maim and slop (for screenshots)
 # - st, firefox, i3lock, rofi
+# - ponymix (implies pulseaudio)
 
 # lock the screen
 # -d causes a dpms off when you lock
@@ -107,3 +108,9 @@ super + c
   ~/.config/sxhkd/open-or-switch M
 super + shift + c
   bspc node -d M
+
+# media keys
+XF86Audio{Lower,Raise}Volume
+  ponymix {decrease,increase} 5
+XF86AudioMute
+  ponymix toggle
