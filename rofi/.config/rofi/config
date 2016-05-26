@@ -7,7 +7,7 @@ rofi.lines: 20
 rofi.fixed-num-lines: true
 rofi.line-margin: 0
 rofi.separator-style: solid
-rofi.padding: 0
+rofi.padding: 5
 rofi.bw: 2
 
 rofi.color-enabled: true
