@@ -104,10 +104,12 @@ set_ps1() {
   # system-dependent
   # \a is alert (aka bell, \007 or \x07), it terminates the OSC string
   # xterm interprets the string as a semicolon-separated list, it will set the
-  # title when the first argument is 2
+  # icon name and title when the first argument is 0
+  # (you can use 2 to set the title only, however st treats 0/1/2 equivalently,
+  # and some terminals, like iterm2, will only answer to a 0)
   # the second argument is the string that shall be the title; we can use the
   # special \w escape since we are in PS1
-  printf '%b%s%b' '\[\e]2;' '\w' '\a\]'
+  printf '%b%s%b' '\[\e]0;' '\w' '\a\]'
 }
 PROMPT_COMMAND='PS1=$(set_ps1)'
 PS2='> '
