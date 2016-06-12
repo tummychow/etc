@@ -47,12 +47,8 @@ super + {_,shift+} {h,j,k,l}
 
 # super+ctrl+dir to set preselect in that direction (the next new window will be opened there)
 # if you repeat the combination in the currently preselected direction, it will be canceled
-# (mimics the auto_cancel option which was removed in bspwm 0.9.1)
 super + ctrl + {h,j,k,l}
-  dir={west,south,north,east} ; \
-  cur=$(bspc query -T -n focused | ruby -rjson -e 'puts JSON.parse(STDIN.read).dig("presel", "splitDir")') ; \
-  [[ "${dir}" == "${cur}" ]] && dir="cancel" ; \
-  bspc node focused -p "${dir}"
+  bspc node focused -p \~{west,south,north,east}
 
 # super+alt+dir to expand that edge
 # super+shift+alt+dir to shrink the opposite edge
