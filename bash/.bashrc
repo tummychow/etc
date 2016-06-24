@@ -90,13 +90,26 @@ set_ps1() {
     printf '%b]%s' "${neut}" "${sep}"
   fi
 
+  # set the color of the prompt character
   if (( ret )) ; then
-    # last command exited nonzero, print a bold red X as the final character
-    printf '%b%s' '\[\e[1;31m\]' 'X'
+    # last command exited nonzero, use bold red
+    printf '%b' '\[\e[1;31m\]'
   else
-    # print the bold white $ or # (depending on uid)
-    printf '%b%s' '\[\e[1;37m\]' '\$'
+    # stick to the standard bold white
+    printf '%b' '\[\e[1;37m\]'
   fi
+  # then print the prompt character itself
+  if [[ -n "$(jobs -ps)" ]] ; then
+    # we have sleeping jobs, print an &
+    printf '&'
+  elif (( ret )) ; then
+    # last command exited nonzero, print X
+    printf 'X'
+  else
+    # print $ (or # if root)
+    printf '%s' '\$'
+  fi
+
   printf '%b ' "${neut}"
 
   # set the title of the terminal
