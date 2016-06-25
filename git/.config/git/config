@@ -2,7 +2,7 @@
 	name = tummychow
 	email = tummychow@users.noreply.github.com
 [core]
-	editor = nvim -c startinsert
+	editor = nvim
 	pager = less -S -+XF
 	autocrlf = input
 	excludesfile = /home/sjung/.config/git/ignore
@@ -51,7 +51,7 @@
 	root = rev-parse --show-toplevel
 
 	# prints logs in a particular, brief format (see below)
-	l = log --date=short --pretty=twoline
+	l = log --pretty=twoline
 	# m stands for "medium"
 	lm = log --pretty=medium --stat --date=local
 
