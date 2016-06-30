@@ -46,12 +46,16 @@
 	ftpa = fetch --all --prune
 	rb = rebase
 	rbi = rebase -i
+	# run rebase --interactive without an editor, useful for autosquash
+	asq = "!GIT_SEQUENCE_EDITOR=: git rebase --interactive --autosquash \"$@\""
 	rp = rev-parse
 	rph = rev-parse HEAD
 	root = rev-parse --show-toplevel
 
 	# prints logs in a particular, brief format (see below)
 	l = log --pretty=twoline
+	lg = log --pretty=twoline --graph --branches --tags
+	la = log --pretty=twoline --graph --all
 	# m stands for "medium"
 	lm = log --pretty=medium --stat --date=local
 
