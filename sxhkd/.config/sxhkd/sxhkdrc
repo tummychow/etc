@@ -5,13 +5,8 @@
 # - ponymix (implies pulseaudio)
 
 # lock the screen
-# -d causes a dpms off when you lock
-# the @ causes the hotkey to trigger on release, otherwise
-# the dpms off would be undone immediately
-# (note: releasing the super key might also
-# undo the dpms off, but it's unlikely)
-super + @Escape
-  i3lock -d -i ~/.config/sxhkd/i3lock.png
+super + Escape
+  i3lock -i ~/.config/sxhkd/i3lock.png
 # exit x
 super + ctrl + Escape
   bspc quit
