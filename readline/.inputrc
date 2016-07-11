@@ -1,0 +1,13 @@
+# when completing a symlink to a directory, add a trailing slash
+# just like for a real directory
+set mark-symlinked-directories on
+
+# color-code file completions using $LS_COLORS
+set colored-stats on
+
+# do not duplicate text after the cursor when completing mid-word
+set skip-completed-text on
+
+# discard all changes to history lines when accepting a line, not just
+# the line that was accepted
+set revert-all-at-newline on
