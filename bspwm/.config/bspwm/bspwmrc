@@ -4,20 +4,20 @@ set -e
 bspc config border_width 2
 bspc config window_gap 4
 
-bspc config top_padding 0
-bspc config bottom_padding 0
-bspc config left_padding 0
-bspc config right_padding 0
+# subtract the gap plus border width from the
+# edges of the screen, so that the edge of the
+# screen is against the adjacent window with no
+# separation
+bspc config top_padding -6
+bspc config bottom_padding -6
+bspc config left_padding -6
+bspc config right_padding -6
 
 bspc config split_ratio 0.55
 bspc config initial_polarity second_child
 
 bspc config focus_follows_pointer true
 bspc config focus_by_distance true
-
-bspc config single_monocle true
-bspc config gapless_monocle true
-bspc config borderless_monocle true
 
 bspc config normal_border_color '#404040'
 bspc config focused_border_color '#40a0ff'
