@@ -1,17 +1,21 @@
 #!/bin/bash
 set -e
 
-bspc config border_width 2
-bspc config window_gap 4
+BORDER=2
+bspc config border_width $BORDER
+
+GAP=4
+bspc config window_gap $GAP
 
 # subtract the gap plus border width from the
 # edges of the screen, so that the edge of the
 # screen is against the adjacent window with no
 # separation
-bspc config top_padding -6
-bspc config bottom_padding -6
-bspc config left_padding -6
-bspc config right_padding -6
+PADDING="$(( 0 - BORDER - GAP ))"
+bspc config top_padding $PADDING
+bspc config bottom_padding $PADDING
+bspc config left_padding $PADDING
+bspc config right_padding $PADDING
 
 bspc config split_ratio 0.55
 bspc config initial_polarity second_child
