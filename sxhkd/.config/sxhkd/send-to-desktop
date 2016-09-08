@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+# usage:
+#   send-to-desktop <desktop-name> [<bspwn window selector>]
+#
+# send the selected window to the selected desktop (defaulting
+# to the focused window) and then re-focus that window
+
+set -e
+
+target_desktop="${1}"
+target_window="${2:-$(bspc query -N -n focused)}"
+
+if [[ "$(bspc query -D -n "${target_window}")" != "${target_desktop}" ]] ; then
+  bspc node "${target_window}" -d "${target_desktop}"
+  bspc node "${target_window}" -f
+fi

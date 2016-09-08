@@ -82,7 +82,7 @@ super + shift + @Print
 super + z
   ~/.config/sxhkd/open-or-switch T st
 super + shift + z
-  [[ "$(bspc query -D -d focused)" != T ]] && bspc node -d T && bspc desktop T -f
+  ~/.config/sxhkd/send-to-desktop T
 super + ctrl + z
   st
 
@@ -90,7 +90,7 @@ super + ctrl + z
 super + x
   ~/.config/sxhkd/open-or-switch W firefox
 super + shift + x
-  [[ "$(bspc query -D -d focused)" != W ]] && bspc node -d W && bspc desktop W -f
+  ~/.config/sxhkd/send-to-desktop W
 super + ctrl + x
   firefox
 
@@ -98,7 +98,7 @@ super + ctrl + x
 super + c
   ~/.config/sxhkd/open-or-switch M
 super + shift + c
-  [[ "$(bspc query -D -d focused)" != M ]] && bspc node -d M && bspc desktop M -f
+  ~/.config/sxhkd/send-to-desktop M
 
 # media keys
 XF86Audio{Lower,Raise}Volume
