@@ -48,11 +48,11 @@ set_ps1() {
 
   if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == 'true' ]] ; then
     # find current checkout branch
-    local checkout="$(git symbolic-ref HEAD --short 2>/dev/null)"
+    local checkout="$(git symbolic-ref --short -q HEAD)"
     # no branch? try tag
-    [[ -z "${checkout}" ]] && checkout="$(git describe --tags --exact-match 2>/dev/null)"
+    [[ -z "${checkout}" ]] && checkout="$(git describe --tags --exact-match HEAD 2>/dev/null)"
     # no tag? try raw commit sha
-    [[ -z "${checkout}" ]] && checkout="$(git rev-parse --short HEAD 2>/dev/null)"
+    [[ -z "${checkout}" ]] && checkout="$(git rev-parse --verify --short -q HEAD^{commit})"
     # no raw commit sha? abnormal error condition
     [[ -z "${checkout}" ]] && checkout='ERROR'
 
@@ -74,7 +74,7 @@ set_ps1() {
     done < <(git status -z)
 
     # hack to check the number of stashes
-    local stash="$(git rev-list --walk-reflogs --count refs/stash 2>/dev/null)"
+    local stash="$(git rev-list --walk-reflogs --count refs/stash -- 2>/dev/null)"
     [[ -z "${stash}" ]] && stash=0
 
     # print the checkout itself in yellow
