@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-sxhkd -f 25 &
+sxhkd &
 
 xrdb -merge <<EOF
 Xcursor.theme: Adwaita
