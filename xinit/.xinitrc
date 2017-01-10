@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+xrandr --output eDP-1 --primary --auto
+xrandr --output HDMI-2 --same-as eDP-1
+
 sxhkd &
 
 xrdb -merge <<EOF
