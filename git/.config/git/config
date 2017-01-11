@@ -85,6 +85,8 @@
 	ui = auto
 [stash]
 	showPatch = true
+[fetch]
+	prune = true
 [push]
 	default = upstream
 	recurseSubmodules = check
