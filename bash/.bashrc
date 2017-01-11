@@ -1,9 +1,7 @@
 # do nothing unless interactive
 [[ $- != *i* ]] && return
 
-shopt -s checkwinsize
-shopt -s histappend
-shopt -s globstar
+shopt -s checkwinsize histappend globstar checkjobs cmdhist histverify
 
 # my prompt ignores the value of $TERM because it's too much trouble
 # to figure out if it means anything useful

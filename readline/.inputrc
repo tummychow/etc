@@ -11,3 +11,6 @@ set skip-completed-text on
 # discard all changes to history lines when accepting a line, not just
 # the line that was accepted
 set revert-all-at-newline on
+
+# treat pasted strings as text, not input
+set enable-bracketed-paste on
