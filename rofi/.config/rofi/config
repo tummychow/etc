@@ -1,6 +1,5 @@
 rofi.modi: window,run,pass:rofi-pass
 rofi.terminal: st
-rofi.fuzzy: true
 rofi.sidebar-mode: true
 rofi.font: Input 10
 rofi.lines: 20
