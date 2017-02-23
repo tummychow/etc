@@ -212,8 +212,8 @@ alias grep='grep --color=auto'
 alias dmesg='dmesg --color'
 alias cower='cower --color=auto'
 
-HISTSIZE=100000
-HISTCONTROL=ignoreboth
+HISTSIZE=-1
+HISTCONTROL=ignoreboth:erasedups
 
 if [[ -r /usr/share/bash-completion/bash_completion ]] ; then
   source /usr/share/bash-completion/bash_completion
