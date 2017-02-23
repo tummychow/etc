@@ -6,7 +6,7 @@ export PASSWORD_STORE_CLIP_TIME=5
 export EDITOR=nvim
 export GOPATH=~/code/go
 # for mpc
-export MPD_HOST=~/.local/share/mpd/socket
+export MPD_HOST="${XDG_RUNTIME_DIR}/mpd.socket"
 # for ssh
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
