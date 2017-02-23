@@ -96,6 +96,6 @@ super + shift + c
 
 # media keys
 XF86Audio{Lower,Raise}Volume
-  ponymix {decrease,increase} 5
+  ponymix {decrease,increase} 4
 XF86AudioMute
   ponymix toggle
