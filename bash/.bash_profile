@@ -7,6 +7,8 @@ export EDITOR=nvim
 export GOPATH=~/code/go
 # for mpc
 export MPD_HOST=~/.local/share/mpd/socket
+# for ssh
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # modify the PATH here
 [[ -d ~/bin ]] && export PATH=~/bin:$PATH
