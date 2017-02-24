@@ -2,4 +2,6 @@
 /ranger/.config/ranger/bookmarks
 /ranger/.config/ranger/history
 
+/ssh/.ssh/hosts
+
 /sxhkd/.config/sxhkd/i3lock.png
