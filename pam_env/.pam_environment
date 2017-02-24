@@ -1,0 +1,13 @@
+EDITOR	DEFAULT=nvim
+
+PASSWORD_STORE_CLIP_TIME	DEFAULT=5
+
+GOPATH	DEFAULT=@{HOME}/code/go
+CARGO_HOME	DEFAULT=@{HOME}/.cargo
+
+MPD_HOST	DEFAULT=${XDG_RUNTIME_DIR}/mpd.socket
+SSH_AUTH_SOCK	DEFAULT=${XDG_RUNTIME_DIR}/ssh-agent.socket
+
+# note: we cannot move PATH into pam_env because, on arch,
+# the initial PATH gets set by /etc/profile, which happens
+# after pam_env
