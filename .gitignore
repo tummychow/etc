@@ -3,5 +3,7 @@
 /ranger/.config/ranger/history
 
 /ssh/.ssh/hosts
+/ssh/.ssh/known_hosts
+/ssh/.ssh/id*
 
 /sxhkd/.config/sxhkd/i3lock.png
