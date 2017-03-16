@@ -51,6 +51,7 @@
 	rp = rev-parse
 	rph = rev-parse HEAD
 	root = rev-parse --show-toplevel
+	new = "!git init && git commit --allow-empty -m 'init' -e"
 
 	# prints logs in a particular, brief format (see below)
 	l = log --pretty=twoline
