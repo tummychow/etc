@@ -42,10 +42,7 @@
 #TabsToolbar .tabbrowser-tab:hover:not([selected]) {
     background: rgba(210,210,210,1) !important;
 }
-/* highlight unloaded tab names using a tabmixplus attribute
- * i find the background highlighting in tabmixplus is rounded
- * on the top corners, so i prefer to set the styles here */
-#TabsToolbar .tabbrowser-tab[tabmix_tabState="unloaded"] .tab-text {
+#TabsToolbar .tabbrowser-tab[pending="true"] .tab-text {
   color: rgba(170,0,0,1) !important;
 }
 
