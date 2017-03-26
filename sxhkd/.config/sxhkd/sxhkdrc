@@ -98,4 +98,6 @@ super + shift + c
 XF86Audio{Lower,Raise}Volume
   ponymix {decrease,increase} 4
 XF86AudioMute
-  ponymix toggle
+  ponymix --output toggle
+ctrl + XF86AudioMute
+  ponymix --input toggle
