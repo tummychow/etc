@@ -1,0 +1,3 @@
+browser.urlbar.clickSelectsAll = true
+browser.urlbar.doubleClickSelectsAll = false
+browser.backspace_action = 0
