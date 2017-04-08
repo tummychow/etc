@@ -1,0 +1,14 @@
+# https://git.pwmt.org/pwmt/zathura/blob/master/doc/man/zathurarc.5.rst
+
+# show statusbar and scrollbars
+set guioptions shv
+
+# collapse $HOME to ~ in statusbar/window title
+set statusbar-home-tilde true
+set window-title-home-tilde true
+
+# do not remember input history or bookmarks
+set database null
+
+# send selections to the CLIPBOARD, not PRIMARY
+set selection-clipboard clipboard
