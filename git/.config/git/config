@@ -37,7 +37,7 @@
 	# stands for "fixup"
 	fu = commit --amend --no-edit
 	fua = commit --amend --no-edit --all
-	pf = push --force
+	pf = push --force-with-lease
 	co = checkout
 	df = diff --color-words
 	dc = diff --color-words --cached
