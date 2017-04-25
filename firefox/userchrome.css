@@ -65,6 +65,12 @@
   margin: 0px !important;
   border: 0px !important;
 }
+/* firefox 53 regression: tab mix plus puts the edge of the tab
+ * too close to the one on its left, causing the end of the text
+ * to blur even if the tab's title fits within its size limit */
+.tabbrowser-tabs[closebuttons="noclose"] > .tabbrowser-tab:not([pinned]) .tab-label[tabmix="true"], .tabbrowser-tabs[closebuttons-side="left"] > .tabbrowser-tab:not([pinned]) .tab-label[tabmix="true"], .tabbrowser-tabs[closebuttons="activetab"][closebuttons-side="right"]:not([closebuttons-hover="notactivetab"]) > .tabbrowser-tab:not([pinned]):not([selected="true"]) .tab-label[tabmix="true"], .tabbrowser-tab[protected]:not([pinned]) .tab-label[tabmix="true"] {
+	margin-inline-end: 0px !important;
+}
 
 /* nav bar */
 #nav-bar {
