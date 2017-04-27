@@ -48,6 +48,6 @@ bspc monitor ^1 -d T W M
 bspc rule -a Firefox desktop=W
 bspc rule -a Skype desktop=M
 bspc rule -a mpv state=floating
-bspc rule -a Sxiv state=floating
 bspc rule -a Pinentry state=floating
+bspc rule -a Sxiv state=fullscreen
 bspc rule -a Zathura state=fullscreen
