@@ -1,3 +1,5 @@
 browser.urlbar.clickSelectsAll = true
 browser.urlbar.doubleClickSelectsAll = false
 browser.backspace_action = 0
+middlemouse.paste = false
+middlemouse.contentLoadURL = false
