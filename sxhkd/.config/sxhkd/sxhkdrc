@@ -88,10 +88,18 @@ super + shift + x
 super + ctrl + x
   firefox
 
-# bindings for the misc desktop
+# bindings for the emacs desktop
 super + c
-  ~/.config/sxhkd/open-or-switch M
+  ~/.config/sxhkd/open-or-switch E emacsclient -ca=
 super + shift + c
+  ~/.config/sxhkd/send-to-desktop E
+super + ctrl + c
+  emacsclient -ca=
+
+# bindings for the misc desktop
+super + v
+  ~/.config/sxhkd/open-or-switch M
+super + shift + v
   ~/.config/sxhkd/send-to-desktop M
 
 # media keys

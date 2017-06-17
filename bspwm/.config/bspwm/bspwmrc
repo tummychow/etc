@@ -40,10 +40,10 @@ bspc config merge_overlapping_monitors true
 bspc config status_prefix '' || true
 
 # give the first monitor its desktops:
-# Terminal, Web, Misc
+# Terminal, Web, Emacs, Misc
 # this also resets the desktop, so that
 # border/gap/padding config applies to it
-bspc monitor ^1 -d T W M
+bspc monitor ^1 -d T W E M
 
 bspc rule -a Firefox desktop=W
 bspc rule -a Skype desktop=M
