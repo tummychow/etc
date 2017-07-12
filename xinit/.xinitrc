@@ -2,7 +2,7 @@
 set -e
 
 xrandr --output eDP-1 --primary --auto
-xrandr --output HDMI-2 --same-as eDP-1
+xrandr --output HDMI-1 --same-as eDP-1
 
 sxhkd &
 dunst &
