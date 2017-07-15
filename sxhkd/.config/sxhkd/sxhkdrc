@@ -61,16 +61,20 @@ super + q
 super + w
   rofi -show pass
 
-# screenshot bindings
+# screenshot binding
 # TODO: use notify-send to signal the creation of the screenshot,
 # clicking the notification should show it in sxiv
-# screenshot the focused window
-super + Print
-  maim -i $(bspc query -n focused -T | ruby -rjson -e 'puts JSON.parse(STDIN.read).dig("id")') ~/"maim-$(date +%F-%T).png"
-# screenshot a region with slop
-# have to trigger on release of the key, otherwise the release event causes slop to cancel itself
-super + shift + @Print
-  maim -s ~/"maim-$(date +%F-%T).png"
+# the "-p -2" applies negative padding to remove the border
+# this is necessary because our bspwmrc puts the border offscreen,
+# which breaks maim's image grab
+# https://github.com/naelstrof/maim/issues/78
+# slop is responsible for applying the padding, not maim, so we have
+# to select the window with -s
+# if we use -i to select the window, then the padding will be ignored
+# the @ is needed to trigger on release of the key, otherwise the
+# release event causes slop to cancel itself
+super + @Print
+  maim -s -p -2 ~/"maim-$(date +%F-%T).png"
 
 # bindings for the terminal desktop
 super + z
