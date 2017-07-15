@@ -8,6 +8,8 @@ CARGO_HOME	DEFAULT=@{HOME}/.cargo
 MPD_HOST	DEFAULT=${XDG_RUNTIME_DIR}/mpd.socket
 SSH_AUTH_SOCK	DEFAULT=${XDG_RUNTIME_DIR}/ssh-agent.socket
 
+RSYNC_PARTIAL_DIR	DEFAULT=.rsync-partial
+
 # note: we cannot move PATH into pam_env because, on arch,
 # the initial PATH gets set by /etc/profile, which happens
 # after pam_env
