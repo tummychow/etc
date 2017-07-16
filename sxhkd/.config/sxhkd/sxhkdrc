@@ -114,7 +114,7 @@ XF86Audio{Lower,Raise}Volume
   notify-send -u low -t 500 -a ponymix "volume" "$(ponymix {decrease,increase} 4)"
 XF86AudioMute
   ponymix --output toggle && notify-send -u low -t 500 -a ponymix "volume" \
-  "$(if ponymix is-muted ; then echo 'output muted' ; else echo 'output unmuted' ; fi)"
+  "output $(ponymix is-muted || echo 'un')muted"
 ctrl + XF86AudioMute
   ponymix --input toggle && notify-send -u low -t 500 -a ponymix "volume" \
-  "$(if ponymix is-muted ; then echo 'input muted' ; else echo 'input unmuted' ; fi)"
+  "input $(ponymix is-muted || echo 'un')muted"
