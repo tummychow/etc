@@ -107,9 +107,14 @@ super + shift + v
   ~/.config/sxhkd/send-to-desktop M
 
 # media keys
+# ponymix can send its own notifications with -N, but the values are
+# communicated by hints, which dunst ignores, so we have to roll our own
+# https://github.com/falconindy/ponymix/blob/master/notify.h
 XF86Audio{Lower,Raise}Volume
-  ponymix {decrease,increase} 4
+  notify-send -u low -t 500 -a ponymix "volume" "$(ponymix {decrease,increase} 4)"
 XF86AudioMute
-  ponymix --output toggle
+  ponymix --output toggle && notify-send -u low -t 500 -a ponymix "volume" \
+  "$(if ponymix is-muted ; then echo 'output muted' ; else echo 'output unmuted' ; fi)"
 ctrl + XF86AudioMute
-  ponymix --input toggle
+  ponymix --input toggle && notify-send -u low -t 500 -a ponymix "volume" \
+  "$(if ponymix is-muted ; then echo 'input muted' ; else echo 'input unmuted' ; fi)"
