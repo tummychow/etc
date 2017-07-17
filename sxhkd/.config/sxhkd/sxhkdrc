@@ -111,7 +111,7 @@ super + shift + v
 # communicated by hints, which dunst ignores, so we have to roll our own
 # https://github.com/falconindy/ponymix/blob/master/notify.h
 XF86Audio{Lower,Raise}Volume
-  notify-send -u low -t 500 -a ponymix "volume" "$(ponymix {decrease,increase} 4)"
+  notify-send -u low -t 500 -a ponymix "volume" "$(ponymix --max-volume 120 {decrease,increase} 4)"
 XF86AudioMute
   ponymix --output toggle && notify-send -u low -t 500 -a ponymix "volume" \
   "output $(ponymix is-muted || echo 'un')muted"
