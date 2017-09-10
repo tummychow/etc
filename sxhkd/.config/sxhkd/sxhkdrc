@@ -94,11 +94,11 @@ super + ctrl + x
 
 # bindings for the emacs desktop
 super + c
-  ~/.config/sxhkd/open-or-switch E emacsclient -ca=
+  ~/.config/sxhkd/open-or-switch E emacsclient --create-frame --alternate-editor=
 super + shift + c
   ~/.config/sxhkd/send-to-desktop E
 super + ctrl + c
-  emacsclient -ca=
+  emacsclient --create-frame --alternate-editor=
 
 # bindings for the misc desktop
 super + v
