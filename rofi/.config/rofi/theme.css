@@ -1,0 +1,82 @@
+* {
+  /* theme variables */
+  theme-bg: #383838;
+  theme-altbg: #282828;
+  theme-fg: #d8d8d8;
+  theme-activefg: #90d090;
+  theme-urgentfg: #c87878;
+  theme-border: 2px solid 0px solid 0px solid;
+  theme-border-color: @theme-fg;
+
+  /* default properties */
+  background-color: @theme-bg;
+  foreground-color: @theme-fg;
+  text-color: @theme-fg;
+  border: 0;
+  border-color: @theme-border-color;
+  padding: 0;
+  spacing: 0;
+  font: "Input 10";
+}
+
+#window {
+  border: 2px;
+  padding: 5px;
+  position: center;
+  anchor: center;
+  width: 50%;
+}
+
+#inputbar {
+  children: [entry];
+}
+
+#listview {
+  border: @theme-border;
+  padding: 2px 0;
+  scrollbar: true;
+  lines: 10;
+  fixed-height: true;
+}
+#scrollbar {
+  handle-color: @theme-fg;
+  handle-width: 5px;
+}
+
+#element {
+  padding: 1px;
+}
+/* "classes" have "some" overriding/inheritance, so we don't have to rewrite every property */
+#element.alternate {
+  background-color: @theme-altbg;
+}
+#element.selected {
+  background-color: @theme-fg;
+  text-color:       @theme-bg;
+}
+#element.normal.active {
+  text-color:       @theme-activefg;
+}
+#element.alternate.active {
+  text-color:       @theme-activefg;
+}
+#element.selected.active {
+  background-color: @theme-activefg;
+}
+#element.normal.urgent {
+  text-color:       @theme-urgentfg;
+}
+#element.alternate.urgent {
+  text-color:       @theme-urgentfg;
+}
+#element.selected.urgent {
+  background-color: @theme-urgentfg;
+}
+
+#sidebar {
+  border: @theme-border;
+}
+#button.selected {
+  background-color: @theme-fg;
+  text-color: @theme-bg;
+}
