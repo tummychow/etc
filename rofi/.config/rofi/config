@@ -17,7 +17,6 @@ rofi.color-window: #2b303b, #c0c5ce
 
 rofi.kb-primary-paste:
 rofi.kb-secondary-paste: Control+v
-rofi.kb-clear-line: Control+u
 rofi.kb-move-front: Control+a
 rofi.kb-move-end: Control+e
 rofi.kb-move-word-back:
