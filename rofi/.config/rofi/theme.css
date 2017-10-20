@@ -52,22 +52,22 @@
 }
 #element.selected {
   background-color: @theme-fg;
-  text-color:       @theme-bg;
+  text-color: @theme-bg;
 }
 #element.normal.active {
-  text-color:       @theme-activefg;
+  text-color: @theme-activefg;
 }
 #element.alternate.active {
-  text-color:       @theme-activefg;
+  text-color: @theme-activefg;
 }
 #element.selected.active {
   background-color: @theme-activefg;
 }
 #element.normal.urgent {
-  text-color:       @theme-urgentfg;
+  text-color: @theme-urgentfg;
 }
 #element.alternate.urgent {
-  text-color:       @theme-urgentfg;
+  text-color: @theme-urgentfg;
 }
 #element.selected.urgent {
   background-color: @theme-urgentfg;
