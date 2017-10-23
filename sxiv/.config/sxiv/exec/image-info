@@ -1,0 +1,5 @@
+#!/bin/sh
+
+filename="$(basename -- "$1")"
+geometry="${2}x${3}"
+echo "${filename} | ${geometry}"
