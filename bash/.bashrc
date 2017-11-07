@@ -27,18 +27,21 @@ set_ps1() {
 
   local sep=' '
 
-  # is this shell inside sudo?
-  # TODO: also check for $SSH_CLIENT
-  if [[ -n "${SUDO_USER}" ]] ; then
-    # sudo to root?
-    if [[ "${EUID}" == 0 ]] ; then
-      # print the user in red
-      # $USER set by login
-      printf '%b[%b%s%b]%s' "${neut}" '\[\e[31m\]' '\u' "${neut}" "${sep}"
-    else
-      # print the user in green
-      printf '%b[%b%s%b]%s' "${neut}" '\[\e[32m\]' '\u' "${neut}" "${sep}"
+  # is this shell inside sudo/ssh?
+  if [[ -n "${SUDO_USER}" || -n "${SSH_CLIENT}" ]] ; then
+    # default to green, red if root
+    local usercol='\[\e[32m\]'
+    # $EUID set by bash itself
+    [[ "${EUID}" == 0 ]] && usercol='\[\e[31m\]'
+    # $USER set by login
+    printf '%b[%b%s%b' "${neut}" "${usercol}" '\u' "${neut}"
+
+    # print hostname as well, if remote
+    # $HOSTNAME set by bash itself
+    if [[ -n "${SSH_CLIENT}" ]] ; then
+      printf '@%b%s%b' "${usercol}" '\h' "${neut}"
     fi
+    printf ']%s' "${sep}"
   fi
 
   # print pwd in cyan
