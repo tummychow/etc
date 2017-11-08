@@ -7,6 +7,9 @@ xrandr --output HDMI-1 --same-as eDP-1
 sxhkd &
 dunst &
 
+# TODO: this hack to find the wlan interface name is super gross
+wpa_cli -p /run/wpa_supplicant -i "$(cd /run/wpa_supplicant && echo wlp*)" -a "${HOME}/bin/bin/wpa-notify" &
+
 xrdb -merge <<EOF
 Xcursor.theme: Adwaita
 Xcursor.size: 32
