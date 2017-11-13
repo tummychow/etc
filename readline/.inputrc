@@ -14,3 +14,11 @@ set revert-all-at-newline on
 
 # treat pasted strings as text, not input
 set enable-bracketed-paste on
+
+# don't save history for non-bash applications
+# note that the history file will still be created
+# it just won't have any lines in it
+$if Bash
+$else
+  set history-size 0
+$endif
