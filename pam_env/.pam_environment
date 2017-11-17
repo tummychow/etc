@@ -12,6 +12,7 @@ RSYNC_PARTIAL_DIR	DEFAULT=.rsync-partial
 
 RANGER_LOAD_DEFAULT_RC	DEFAULT=FALSE
 
+LIBVIRT_DEFAULT_URI DEFAULT=qemu:///system
 # note: we cannot move PATH into pam_env because, on arch,
 # the initial PATH gets set by /etc/profile, which happens
 # after pam_env
