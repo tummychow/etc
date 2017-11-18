@@ -1,43 +1,18 @@
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
-/* background color of tab bar controls should match nav bar */
-#TabsToolbar .tabbrowser-arrowscrollbox,
-#TabsToolbar .tabbrowser-arrowscrollbox > .scrollbutton-up,
-#TabsToolbar .tabbrowser-arrowscrollbox > .scrollbutton-down,
-#alltabs-button {
-  background-color: var(--chrome-secondary-background-color) !important;
+/* hide close */
+.tabbrowser-tab .tab-close-button {
+  display: none !important;
 }
 
-/* styling of individual tabs */
-#TabsToolbar .tabbrowser-tab {
-  color: rgba(0,0,0,1) !important;
-  background: rgba(180,180,180,1) !important;
+:root {
+  /* remove borders from active tab and below tabs */
+  --tabs-border: transparent !important;
+  /* darker tab toolbar */
+  --chrome-background-color: rgba(180, 180, 180, 1) !important;
 }
-#TabsToolbar .tabbrowser-tab[selected] {
-  color: rgba(0,0,0,1) !important;
-  background: rgba(245,245,245,1) !important; 
-}
-#TabsToolbar .tabbrowser-tab:hover:not([selected]) {
-    background: rgba(210,210,210,1) !important;
-}
-#TabsToolbar .tabbrowser-tab[pending="true"] .tab-text {
+
+/* highlight unloaded tabs by text color */
+.tabbrowser-tab[pending="true"] .tab-text {
   color: rgba(170,0,0,1) !important;
-}
-
-/* firefox 53 regression: tab mix plus puts the edge of the tab
- * too close to the one on its left, causing the end of the text
- * to blur even if the tab's title fits within its size limit */
-.tabbrowser-tabs[closebuttons="noclose"] > .tabbrowser-tab:not([pinned]) .tab-label[tabmix="true"], .tabbrowser-tabs[closebuttons-side="left"] > .tabbrowser-tab:not([pinned]) .tab-label[tabmix="true"], .tabbrowser-tabs[closebuttons="activetab"][closebuttons-side="right"]:not([closebuttons-hover="notactivetab"]) > .tabbrowser-tab:not([pinned]):not([selected="true"]) .tab-label[tabmix="true"], .tabbrowser-tab[protected]:not([pinned]) .tab-label[tabmix="true"] {
-	margin-inline-end: 0px !important;
-}
-
-/* nav bar */
-#nav-bar {
-  /* this remoevs a gray line between the tab and nav bars */
-  box-shadow: unset !important;
-}
-
-#forward-button {
-  /* prevent it from hiding when disabled */
-  margin-left: 0 !important;
 }
