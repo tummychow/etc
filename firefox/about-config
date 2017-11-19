@@ -3,3 +3,5 @@ browser.urlbar.doubleClickSelectsAll = false
 browser.backspace_action = 0
 middlemouse.paste = false
 middlemouse.contentLoadURL = false
+browser.tabs.closeWindowWithLastTab = false
+extensions.pocket.enabled = false
