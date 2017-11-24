@@ -16,14 +16,15 @@
 [color]
 	ui = true
 [color "diff"]
-	old = red reverse bold
-	new = green reverse bold
-	whitespace = magenta reverse bold
+	old = 9 reverse bold
+	new = 10 reverse bold
+	whitespace = 13 reverse bold
+        meta = 15 bold
 [color "branch"]
-	current = yellow bold
+	current = 11 bold
 [color "status"]
-	branch = yellow bold
-	nobranch = yellow bold
+	branch = 11 bold
+	nobranch = 11 bold
 	added = green
 	changed = red
 	untracked = yellow
@@ -76,11 +77,11 @@
 	# the square brackets are designed to match my bash profile (the refs are wrapped in parentheses, can't be changed)
 	# the hash is in bright red, the name is green, the date is teal, the refs are brown
 	# the colors were chosen specifically to avoid blurring into my bash prompt lol
-	twoline = tformat:%C(red bold)%h%Creset [%C(green)%an%Creset @ %C(cyan)%ad%Creset]%C(yellow)%d%Creset%n        %s
+	twoline = tformat:%C(9 bold)%h%Creset [%C(green)%an%Creset @ %C(cyan)%ad%Creset]%C(yellow)%d%Creset%n        %s
 
 	# similar to the above, but title in the middle instead of on second line
 	# also it's "format" instead of "tformat" to prevent excess newlines
-	onetwoline = format:%C(red bold)%h%Creset %s [%C(green)%an%Creset @ %C(cyan)%ad%Creset]%C(yellow)%d%Creset
+	onetwoline = format:%C(9 bold)%h%Creset %s [%C(green)%an%Creset @ %C(cyan)%ad%Creset]%C(yellow)%d%Creset
 
 [columns]
 	ui = auto

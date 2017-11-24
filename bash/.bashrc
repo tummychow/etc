@@ -94,7 +94,7 @@ set_ps1() {
   # set the color of the prompt character
   if (( ret )) ; then
     # last command exited nonzero, use bold red
-    printf '%b' '\[\e[1;31m\]'
+    printf '%b' '\[\e[1;91m\]'
   else
     # we want to draw the prompt character in cyan if we have an interactive ancestor
     # process, so that we remember not to close this entire terminal window
@@ -153,10 +153,10 @@ set_ps1() {
 
     if [[ -n "${foundancestor}" ]] ; then
       # we have an interactive ancestor PID, use bold cyan
-      printf '%b' '\[\e[1;36m\]'
+      printf '%b' '\[\e[1;96m\]'
     else
       # stick to the standard bold white
-      printf '%b' '\[\e[1;37m\]'
+      printf '%b' '\[\e[1;97m\]'
     fi
   fi
 
