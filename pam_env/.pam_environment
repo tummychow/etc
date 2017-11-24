@@ -14,6 +14,13 @@ RSYNC_PARTIAL_DIR DEFAULT=.rsync-partial
 RANGER_LOAD_DEFAULT_RC DEFAULT=FALSE
 
 LIBVIRT_DEFAULT_URI DEFAULT=qemu:///system
+
+# R - preserve ansi color escape sequences
+# S - truncate long lines instead of wrapping
+LESS DEFAULT=-RS
+# don't save history for less
+LESSHISTFILE DEFAULT=-
+
 # note: we cannot move PATH into pam_env because, on arch,
 # the initial PATH gets set by /etc/profile, which happens
 # after pam_env

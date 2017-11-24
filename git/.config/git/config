@@ -3,7 +3,7 @@
 	email = tummychow@users.noreply.github.com
 [core]
 	editor = nvim
-	pager = less -S -+XF
+	pager = less
 	autocrlf = input
 	excludesfile = /home/sjung/.config/git/ignore
 [sequence]
