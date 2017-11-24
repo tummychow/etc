@@ -203,8 +203,8 @@ alias ll='ls -lha'
 # mkdir for each argument, then cd into the last argument
 mcd () { mkdir -p "$@" && eval cd "\"\$$#\"" ; }
 
-if [[ -r '~/.dircolors' ]] ; then
-  eval $(dircolors -b ~/.dircolors)
+if [[ -r "${HOME}/.dir_colors" ]] ; then
+  eval $(dircolors -b "${HOME}/.dir_colors")
 elif [[ -r '/etc/DIR_COLORS' ]] ; then
   eval $(dircolors -b /etc/DIR_COLORS)
 fi
