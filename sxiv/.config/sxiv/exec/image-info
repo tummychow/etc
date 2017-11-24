@@ -1,5 +1,7 @@
 #!/bin/sh
 
-filename="$(basename -- "$1")"
+filename="${1##*/}"
 geometry="${2}x${3}"
-echo "${filename} | ${geometry}"
+size="$(du -Dh --apparent-size "$1")"
+
+echo "${filename} | ${geometry} | ${size%%[[:space:]]*}"
