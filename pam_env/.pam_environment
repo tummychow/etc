@@ -13,7 +13,7 @@ RSYNC_PARTIAL_DIR DEFAULT=.rsync-partial
 
 RANGER_LOAD_DEFAULT_RC DEFAULT=FALSE
 
-LIBVIRT_DEFAULT_URI DEFAULT=qemu:///system
+LIBVIRT_DEFAULT_URI DEFAULT=qemu:///session
 
 # R - preserve ansi color escape sequences
 # S - truncate long lines instead of wrapping
