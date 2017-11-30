@@ -27,4 +27,6 @@ xset dpms 0 0 900
 
 xsetroot -cursor_name left_ptr
 
+dex -a
+
 exec bspwm
