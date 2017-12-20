@@ -1,0 +1,99 @@
+directory: ~/muzak
+library: ~/muzak/beets.db
+
+import:
+  copy: true
+  write: true
+  from_scratch: true
+  timid: true
+  detail: true
+  log: ~/muzak/import.log
+  languages:
+    - en
+
+format_item: '$album ($albumartist) - $artist - $title'
+
+paths:
+  default: '${genre}/${albumartist_sort} - ${album}%aunique{}/${track} - ${title}'
+  comp: '${genre}/Various Artists - ${album}%aunique{}/${track} - ${title}'
+  singleton: 'singleton/${artist_sort}/${title}'
+replace:
+  '[\\/]': _
+  '^\.': _
+  '[\x00-\x1f]': _
+  '[<>:"\?\*\|\n]': _
+  '\s+$': ''
+  '^\s+': ''
+
+plugins:
+  - convert
+  - duplicates
+  - edit
+  - embedart
+  - fetchart
+  - fromfilename
+  - info
+  - mbsync
+  - missing
+  - replaygain
+  - scrub
+  - smartplaylist
+  - zero
+
+# requires:
+# - ffmpeg
+convert:
+  auto: false
+  format: opus
+  never_convert_lossy_files: true
+edit:
+  itemfields:
+    - genre
+    - album
+    - artist
+    - track
+    - title
+    - source
+  albumfields:
+    - genre
+    - album
+    - albumartist
+    - source
+embedart:
+  auto: true
+  remove_art_file: false
+# requires:
+# - python-requests
+fetchart:
+  auto: true
+  store_source: true
+# requires:
+# - python-gobject
+# - gst-libav
+#   https://cgit.freedesktop.org/gstreamer/gst-libav/tree/docs/plugins/gst-libav-plugins.hierarchy
+# - gst-plugins-base
+#   decodebin
+#   audioconvert
+#   audioresample
+# - gst-plugins-good
+#   rganalysis
+replaygain:
+  auto: true
+  overwrite: true
+  noclip: true
+  backend: gstreamer
+scrub:
+  auto: true
+smartplaylist:
+  auto: true
+  playlist_dir: ~/muzak/playlists
+  playlists:
+    - name: unsourced.m3u
+      query: 'source::^$'
+      album_query: 'source::^$'
+zero:
+  auto: true
+  update_database: true
+  fields:
+    - comments
+    - encoder
