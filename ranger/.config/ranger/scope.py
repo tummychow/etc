@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import io
-import itertools
 import pathlib
 import shutil
 import subprocess
