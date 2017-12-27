@@ -14,8 +14,8 @@ import:
 format_item: '$album ($albumartist) - $artist - $title'
 
 paths:
-  default: '${genre}/${albumartist_sort} - ${album}%aunique{}/${track} - ${title}'
-  comp: '${genre}/Various Artists - ${album}%aunique{}/${track} - ${title}'
+  default: '${genre}/${albumartist_sort} - ${album}%aunique{}/${disc_track_padded} - ${title}'
+  comp: '${genre}/Various Artists - ${album}%aunique{}/${disc_track_padded} - ${title}'
   singleton: 'singleton/${artist_sort}/${title}'
 replace:
   '[\\/]': _
@@ -33,6 +33,7 @@ plugins:
   - fetchart
   - fromfilename
   - info
+  - inline
   - mbsync
   - missing
   - replaygain
@@ -67,6 +68,11 @@ embedart:
 fetchart:
   auto: true
   store_source: true
+item_fields:
+  disc_track_padded: |
+    if disctotal > 1:
+        return f'{disc:0{len(str(disctotal))}}-{track:0{len(str(tracktotal))}}'
+    return f'{track:0{len(str(tracktotal))}}'
 # requires:
 # - python-gobject
 # - gst-libav
