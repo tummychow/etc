@@ -92,14 +92,13 @@ scrub:
   auto: true
 smartplaylist:
   auto: true
-  playlist_dir: ~/muzak/playlists
+  playlist_dir: ~/.local/share/mpd/playlists
   playlists:
     - name: unsourced.m3u
-      query: 'source::^$'
-      album_query: 'source::^$'
+      query: 'source::^$ album+ track+'
+      album_query: 'source::^$ album+ track+'
 zero:
   auto: true
   update_database: true
   fields:
     - comments
-    - encoder
