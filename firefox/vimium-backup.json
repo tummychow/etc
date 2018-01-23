@@ -1,0 +1,21 @@
+{
+  "settingsVersion": "1.62",
+  "exclusionRules": [],
+  "filterLinkHints": false,
+  "waitForEnterForFilteredHints": true,
+  "hideHud": false,
+  "keyMappings": "unmapAll\n\nmap h scrollLeft\nmap j scrollDown\nmap k scrollUp\nmap l scrollRight\nmap gg scrollToTop\nmap G scrollToBottom\n\nmap q goBack\nmap a goForward\nmap w goPrevious\nmap [ goPrevious\nmap s goNext\nmap ] goNext\nmap e scrollPageUp\nmap d scrollPageDown\n\nmap f LinkHints.activateMode\nmap F LinkHints.activateModeToOpenInNewTab keyword=d\nmap yf LinkHints.activateModeToCopyLinkUrl\n\nmap gf nextFrame\nmap gF mainFrame\n\nmap i focusInput\nmap gi passNextKey\nmap I enterInsertMode\n\nmap r reload\nmap R reload hard\n\nmap yy copyCurrentUrl\nmap p openCopiedUrlInNewTab\n\nmap o Vomnibar.activate\nmap O Vomnibar.activateInNewTab keyword=d\nmap gb Vomnibar.activateBookmarksInNewTab\nmap gt Vomnibar.activateTabSelection\nmap go Vomnibar.activateEditUrl\nmap gO Vomnibar.activateEditUrlInNewTab\n\nmap / enterFindMode\nmap n performFind\nmap N performBackwardsFind\n\nmap t createTab\nmap yt duplicateTab\nmap x removeTab\nmap X restoreTab\nmap c previousTab\nmap , previousTab\nmap v nextTab\nmap . nextTab\nmap gc moveTabLeft\nmap g, moveTabLeft\nmap gv moveTabRight\nmap g. moveTabRight\n\nmap ? showHelp",
+  "linkHintCharacters": "dsagvcxzbrewqt",
+  "linkHintNumbers": "0123456789",
+  "newTabUrl": "about:blank",
+  "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
+  "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<",
+  "regexFindMode": false,
+  "ignoreKeyboardLayout": false,
+  "scrollStepSize": 60,
+  "smoothScroll": false,
+  "grabBackFocus": true,
+  "searchEngines": "d: https://duckduckgo.com/?q=%s DuckDuckGo",
+  "searchUrl": "https://duckduckgo.com/?q=",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: #FFC542;\nborder: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+}
