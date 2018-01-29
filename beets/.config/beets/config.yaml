@@ -97,6 +97,8 @@ smartplaylist:
     - name: unsourced.m3u
       query: 'source::^$ album+ track+'
       album_query: 'source::^$ album+ track+'
+    - name: good.m3u
+      query: '^good::^$ album+ track+'
 zero:
   auto: true
   update_database: true
