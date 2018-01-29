@@ -104,8 +104,13 @@ set_ps1() {
     local -a ttypids
     # first we have to use lsof to find programs holding an fd on our tty, we use the
     # tty command to get the tty's path
+    # TODO: only invoke lsof once at startup of shell (this would miss ancestors opening
+    # or closing tty after startup, but i think that's an acceptable tradeoff)
+    # TODO: can we also use fuser -f? (http://pubs.opengroup.org/onlinepubs/9699919799/utilities/fuser.html)
+    # TODO: can we use lsof -p ^ to exclude this shell's pid and lsof's own pid?
     # the tty command uses the ttyname function to return the path to the tty of
     # its stdin fd (you can also find the tty from procfs but that's linux-only)
+    # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/tty.html
     # then we lsof to find processes holding that tty, excluding lsof itself (-c ^lsof)
     # and listing only their pids (-t)
     # note that if we invoke this inside a subshell it will cause more PIDs to be
