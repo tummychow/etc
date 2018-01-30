@@ -196,25 +196,39 @@ PS2='> '
 PS3='> '
 PS4='+'
 
-alias mv='mv -i'
-alias rm='rm -I --one-file-system'
-alias mkdir='mkdir -p'
-alias ll='ls -lha'
+# posix-portable
+alias mv='mv -i' # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/mv.html
+alias mkdir='mkdir -p' # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/mkdir.html
 
-# for some reason, 'cp -if' still prompts you, so i
-# stopped using this alias
-# alias cp='cp -i'
+# http://pubs.opengroup.org/onlinepubs/9699919799/utilities/ls.html
+# -la is posix-portable
+# -h is not posix-portable, but both bsd and gnu ls support it
+alias ll='ls -lha'
+# there is no posix-portable way to enable color
+# there is also no posix-portable way to detect version, so we hack it
+if [[ "$(uname)" == Linux ]] ; then
+  alias ls='ls --quoting-style=literal --color=auto'
+  if which dircolors >/dev/null ; then
+    if [[ -r "${HOME}/.dir_colors" ]] ; then
+      eval $(dircolors -b "${HOME}/.dir_colors")
+    elif [[ -r '/etc/DIR_COLORS' ]] ; then
+      eval $(dircolors -b /etc/DIR_COLORS)
+    fi
+  fi
+else
+  # you can export CLICOLOR instead of defining this alias
+  alias ls='ls -G'
+  export LSCOLORS=ExGxFxFxCxDxDxBABAEAEA
+fi
+
+# i like using -i to prompt for overwrites
+# however, you cannot use -f to skip the prompt, and this restriction is posix-mandated
+# i stopped using this alias as a result
+# alias cp='cp -i' # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/cp.html
 
 # mkdir for each argument, then cd into the last argument
 mcd () { mkdir -p "$@" && eval cd "\"\$$#\"" ; }
 
-if [[ -r "${HOME}/.dir_colors" ]] ; then
-  eval $(dircolors -b "${HOME}/.dir_colors")
-elif [[ -r '/etc/DIR_COLORS' ]] ; then
-  eval $(dircolors -b /etc/DIR_COLORS)
-fi
-
-alias ls='ls --quoting-style=literal --color=auto'
 alias dir='dir --color=auto'
 alias grep='grep --color=auto'
 alias dmesg='dmesg --color'
