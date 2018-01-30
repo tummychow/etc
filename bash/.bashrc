@@ -239,4 +239,7 @@ HISTCONTROL=ignoreboth:erasedups
 
 if [[ -r /usr/share/bash-completion/bash_completion ]] ; then
   source /usr/share/bash-completion/bash_completion
+elif [[ -r /usr/local/share/bash-completion/bash_completion ]] ; then
+  # alternative path, eg for homebrew on osx
+  source /usr/local/share/bash-completion/bash_completion
 fi
