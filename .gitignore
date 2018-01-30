@@ -1,5 +1,7 @@
 /beets/.config/beets/state.pickle
 
+/git/.config/git/user
+
 /ranger/.config/ranger/tagged
 /ranger/.config/ranger/bookmarks
 /ranger/.config/ranger/history

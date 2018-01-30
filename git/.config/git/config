@@ -1,11 +1,10 @@
-[user]
-	name = tummychow
-	email = tummychow@users.noreply.github.com
+[include]
+	path = ~/.config/git/user
 [core]
 	editor = nvim
 	pager = less
 	autocrlf = input
-	excludesfile = /home/sjung/.config/git/ignore
+	excludesfile = ~/.config/git/ignore
 [sequence]
 	editor = nvim
 [branch]
