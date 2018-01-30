@@ -96,67 +96,7 @@ set_ps1() {
     # last command exited nonzero, use bold red
     printf '%b' '\[\e[1;91m\]'
   else
-    # we want to draw the prompt character in cyan if we have an interactive ancestor
-    # process, so that we remember not to close this entire terminal window
-    # you could hack this with $SHLVL or $BASH_SUBSHELL, but a better way is to check
-    # who's using the same tty device as you
-    # TODO: does this behave well if inside a terminal multiplexer or ssh?
-    local -a ttypids
-    # first we have to use lsof to find programs holding an fd on our tty, we use the
-    # tty command to get the tty's path
-    # TODO: only invoke lsof once at startup of shell (this would miss ancestors opening
-    # or closing tty after startup, but i think that's an acceptable tradeoff)
-    # TODO: can we also use fuser -f? (http://pubs.opengroup.org/onlinepubs/9699919799/utilities/fuser.html)
-    # TODO: can we use lsof -p ^ to exclude this shell's pid and lsof's own pid?
-    # the tty command uses the ttyname function to return the path to the tty of
-    # its stdin fd (you can also find the tty from procfs but that's linux-only)
-    # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/tty.html
-    # then we lsof to find processes holding that tty, excluding lsof itself (-c ^lsof)
-    # and listing only their pids (-t)
-    # note that if we invoke this inside a subshell it will cause more PIDs to be
-    # listed, so we have to do it early
-    # the exact subtleties of when extra subshells get listed depends a lot on how you
-    # invoke it, whether you pipe it into something, etc, so this is the safest and
-    # most predictable approach
-    local lsofout="$(lsof -c ^lsof -t -- "$(tty)")"
-    # now we build up an array whose indices are the pids holding our tty, excluding
-    # ourselves
-    while read -r ; do
-      if [[ "${REPLY}" != "${$}" ]] ; then
-        ttypids["${REPLY}"]=true
-      fi
-    done <<< "${lsofout}"
-
-    local foundancestor
-    # in most cases, there will be no pids holding our terminal besides our own
-    # we want to bail out early there instead of invoking ps
-    if [[ "${#ttypids[@]}" != 0 ]] ; then
-      # now we compute a table mapping pids to their parents using ps
-      # ps invocations and output vary significantly from platform to platform, so we're
-      # trying to stick to a posix-compatible invocation
-      # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/ps.html
-      # ps has no easy way to filter to "ancestors of pid", so we just have to list all
-      # pids on the system
-      local -a pidtable
-      while read -r pid ppid ; do
-        pidtable["${pid}"]="${ppid}"
-      done < <(ps -A -o pid= -o ppid=)
-
-      # now we go up the process tree from our current pid, looking for pids that land
-      # in the lsof output
-      local nextparent="${pidtable["${$}"]}"
-      while [[ -n "${nextparent}" && "${nextparent}" != 0 ]] ; do
-        # we have not yet reached the root of the process tree, does this ancestor
-        # have our tty open?
-        if [[ -n "${ttypids["${nextparent}"]}" ]] ; then
-          foundancestor=true
-          break
-        fi
-        nextparent="${pidtable["${nextparent}"]}"
-      done
-    fi
-
-    if [[ -n "${foundancestor}" ]] ; then
+    if [[ "${#TTYLVL[@]}" != 0 ]] ; then
       # we have an interactive ancestor PID, use bold cyan
       printf '%b' '\[\e[1;96m\]'
     else
@@ -195,6 +135,68 @@ PROMPT_COMMAND='PS1=$(set_ps1)'
 PS2='> '
 PS3='> '
 PS4='+'
+
+# we want to draw the prompt character in cyan if we have an interactive ancestor
+# process, so that we remember not to close this entire terminal window
+# you could hack this with $SHLVL or $BASH_SUBSHELL, but a better way is to check
+# who's using the same tty device as you
+# TODO: does this behave well if inside a terminal multiplexer or ssh?
+declare -a ttypids
+# first we have to use lsof to find programs holding an fd on our tty, we use the
+# tty command to get the tty's path
+# TODO: can we also use fuser -f? (http://pubs.opengroup.org/onlinepubs/9699919799/utilities/fuser.html)
+# TODO: can we use lsof -p ^ to exclude this shell's pid and lsof's own pid?
+# the tty command uses the ttyname function to return the path to the tty of
+# its stdin fd (you can also find the tty from procfs but that's linux-only)
+# http://pubs.opengroup.org/onlinepubs/9699919799/utilities/tty.html
+# then we lsof to find processes holding that tty, excluding lsof itself (-c ^lsof)
+# and listing only their pids (-t)
+# note that if we invoke this inside a subshell it will cause more PIDs to be
+# listed, so we have to do it early
+# the exact subtleties of when extra subshells get listed depends a lot on how you
+# invoke it, whether you pipe it into something, etc, so this is the safest and
+# most predictable approach
+lsofout="$(lsof -c ^lsof -t -- "$(tty)")"
+# now we build up an array whose indices are the pids holding our tty, excluding
+# ourselves
+while read -r ; do
+  if [[ "${REPLY}" != "${$}" ]] ; then
+    ttypids["${REPLY}"]=true
+  fi
+done <<< "${lsofout}"
+unset -v lsofout
+# this variable will remain declared throughout the shell session
+# to remember how deeply nested the tty is
+declare -a TTYLVL
+# in most cases, there will be no pids holding our terminal besides our own
+# we want to bail out early there instead of invoking ps
+if [[ "${#ttypids[@]}" != 0 ]] ; then
+  # now we compute a table mapping pids to their parents using ps
+  # ps invocations and output vary significantly from platform to platform, so we're
+  # trying to stick to a posix-compatible invocation
+  # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/ps.html
+  # ps has no easy way to filter to "ancestors of pid", so we just have to list all
+  # pids on the system
+  declare -a pidtable
+  while read -r pid ppid ; do
+    pidtable["${pid}"]="${ppid}"
+  done < <(ps -A -o pid= -o ppid=)
+
+  # now we go up the process tree from our current pid, looking for pids that land
+  # in the lsof output
+  nextparent="${pidtable["${$}"]}"
+  while [[ -n "${nextparent}" && "${nextparent}" != 0 ]] ; do
+    # we have not yet reached the root of the process tree, does this ancestor
+    # have our tty open?
+    if [[ -n "${ttypids["${nextparent}"]}" ]] ; then
+      TTYLVL+=("${nextparent}")
+    fi
+    nextparent="${pidtable["${nextparent}"]}"
+  done
+  unset -v nextparent
+  unset -v pidtable
+fi
+unset -v ttypids
 
 # posix-portable
 alias mv='mv -i' # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/mv.html
