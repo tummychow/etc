@@ -5,6 +5,8 @@
 	pager = less
 	autocrlf = input
 	excludesfile = ~/.config/git/ignore
+[pager]
+	branch = false
 [sequence]
 	editor = nvim
 [branch]
