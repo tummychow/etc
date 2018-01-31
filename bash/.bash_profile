@@ -7,11 +7,17 @@ if [[ -d ~/bin ]] ; then
     PATH="${bindir:0:-1}:${PATH}"
   done
 fi
-[[ -n "${GOPATH}" && -d "${GOPATH}/bin" ]] && PATH="${PATH}:${GOPATH}/bin"
-[[ -n "${CARGO_HOME}" && -d "${CARGO_HOME}/bin" ]] && PATH="${PATH}:${CARGO_HOME}/bin"
+if [[ -n "${GOPATH}" && -d "${GOPATH}/bin" ]] ; then
+  PATH="${PATH}:${GOPATH}/bin"
+fi
+if [[ -n "${CARGO_HOME}" && -d "${CARGO_HOME}/bin" ]] ; then
+  PATH="${PATH}:${CARGO_HOME}/bin"
+fi
 export PATH
 
-[[ -r ~/.bashrc ]] && source ~/.bashrc
+if [[ -r ~/.bashrc ]] ; then
+  source ~/.bashrc
+fi
 
 if [[ -z "${DISPLAY}" && "${XDG_VTNR}" == 1 && -r ~/.xinitrc ]] ; then
   startx
