@@ -15,6 +15,9 @@ if [[ -n "${CARGO_HOME}" && -d "${CARGO_HOME}/bin" ]] ; then
 fi
 export PATH
 
+if [[ -r ~/.bash_profile_private ]] ; then
+  source ~/.bash_profile_private
+fi
 if [[ -r ~/.bashrc ]] ; then
   source ~/.bashrc
 fi

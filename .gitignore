@@ -1,3 +1,6 @@
+/bash/.bash_profile_private
+/bash/.bashrc_private
+
 /beets/.config/beets/state.pickle
 
 /git/.config/git/user

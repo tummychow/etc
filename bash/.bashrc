@@ -245,3 +245,7 @@ elif [[ -r /usr/local/share/bash-completion/bash_completion ]] ; then
   # alternative path, eg for homebrew on osx
   source /usr/local/share/bash-completion/bash_completion
 fi
+
+if [[ -r ~/.bashrc_private ]] ; then
+  source ~/.bashrc_private
+fi
