@@ -15,6 +15,14 @@ if [[ -n "${CARGO_HOME}" && -d "${CARGO_HOME}/bin" ]] ; then
 fi
 export PATH
 
+if [[ "$(uname)" != Linux ]] ; then
+  # TODO: parse .pam_environment instead
+  export EDITOR=nvim
+  export RANGER_LOAD_DEFAULT_RC=FALSE
+  export LESS=-RS
+  export LESSHISTFILE=-
+fi
+
 if [[ -r ~/.bash_profile_private ]] ; then
   source ~/.bash_profile_private
 fi
