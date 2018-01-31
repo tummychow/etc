@@ -1,0 +1,7 @@
+#!/usr/bin/osascript
+
+if application "iTerm" is running then
+  tell application "iTerm" to create window with default profile
+else
+  activate application "iTerm"
+end if

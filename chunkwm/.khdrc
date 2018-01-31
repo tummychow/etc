@@ -1,0 +1,57 @@
+alt + ctrl + cmd + shift - r : khd -e reload
+alt - escape : pmset displaysleepnow
+
+alt - 0x32 : chunkc tiling::window --close
+
+alt - a : if [[ "$(chunkc tiling::query --desktop mode)" == bsp ]] ; then chunkc tiling::desktop --layout monocle ; else chunkc tiling::desktop --layout bsp ; fi
+alt - s : chunkc tiling::window --toggle float
+
+alt - d : chunkc tiling::window --focus prev
+alt - f : chunkc tiling::window --focus next
+
+alt - h : chunkc tiling::window --focus west
+alt - j : chunkc tiling::window --focus south
+alt - k : chunkc tiling::window --focus north
+alt - l : chunkc tiling::window --focus east
+
+alt + shift - h : chunkc tiling::window --swap west
+alt + shift - j : chunkc tiling::window --swap south
+alt + shift - k : chunkc tiling::window --swap north
+alt + shift - l : chunkc tiling::window --swap east
+
+alt + ctrl - h : chunkc tiling::window --use-insertion-point west
+alt + ctrl - j : chunkc tiling::window --use-insertion-point south
+alt + ctrl - k : chunkc tiling::window --use-insertion-point north
+alt + ctrl - l : chunkc tiling::window --use-insertion-point east
+
+alt + cmd - h : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+alt + cmd - j : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+alt + cmd - k : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
+alt + cmd - l : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+alt + cmd + shift - h : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
+alt + cmd + shift - j : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
+alt + cmd + shift - k : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
+alt + cmd + shift - l : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+
+alt - z : ~/.config/chunkwm/chunk-open-or-switch 1 ~/.config/chunkwm/iterm-new
+alt + shift - z : chunkc tiling::window --send-to-desktop 1 && khd -p "alt + ctrl + cmd + shift - 1"
+alt + ctrl - z : ~/.config/chunkwm/iterm-new
+
+alt - x : ~/.config/chunkwm/chunk-open-or-switch 2 open -na "/Applications/Google Chrome.app"
+alt + shift - x : chunkc tiling::window --send-to-desktop 2 && khd -p "alt + ctrl + cmd + shift - 2"
+alt + ctrl - x : open -na "/Applications/Google Chrome.app"
+
+# TODO: avoid spawning several instances of emacs.app, instead open new frames on the existing instance
+# emacsclient doesn't seem to work too well on osx https://gist.github.com/railwaycat/4043945
+# hack something up with applescript maybe?
+alt - c : ~/.config/chunkwm/chunk-open-or-switch 3 open -na /Applications/Emacs.app
+alt + shift - c : chunkc tiling::window --send-to-desktop 3 && khd -p "alt + ctrl + cmd + shift - 3"
+alt + ctrl - c : open -na /Applications/Emacs.app
+
+alt - v : ~/.config/chunkwm/chunk-open-or-switch 4 open -na /Applications/Slack.app
+alt + shift - v : chunkc tiling::window --send-to-desktop 4 && khd -p "alt + ctrl + cmd + shift - 4"
+alt + ctrl - v : open -na /Applications/Slack.app
+
+alt - b : ~/.config/chunkwm/chunk-open-or-switch 5
+alt + shift - b : chunkc tiling::window --send-to-desktop 5 && khd -p "alt + ctrl + cmd + shift - 5"

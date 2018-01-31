@@ -1,0 +1,36 @@
+#!/usr/local/bin/bash
+
+set -e
+
+switch_to_desktop () {
+    khd -p "alt + ctrl + cmd + shift - ${1}"
+
+    # have to wait for osx space-swapping animation
+    sleep 0.5
+
+    # normally the last focused window on the space will regain focus
+    # but for some reason, that doesn't happen on emacs windows
+    # we have to manually reassign the focus like this
+    chunkc tiling::window --focus biggest
+}
+
+target="${1}"
+shift
+focused="$(chunkc tiling::query --desktop id)"
+
+if [[ "${target}" == "${focused}" ]] ; then
+  if [[ "$(chunkc tiling::query --desktop windows)" == "desktop" && -n "$@" ]] ; then
+    exec "$@"
+  else
+    next="$(chunkc get _last_active_desktop)"
+    if [[ "${next}" == "${focused}" ]] ; then
+      echo TODO
+    fi
+    switch_to_desktop "${next}"
+  fi
+else
+  switch_to_desktop "${target}"
+  if [[ "$(chunkc tiling::query --desktop windows)" == "desktop" && -n "$@" ]] ; then
+    exec "$@"
+  fi
+fi
