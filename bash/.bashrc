@@ -220,6 +220,7 @@ if [[ "$(uname)" == Linux ]] ; then
 else
   # you can export CLICOLOR instead of defining this alias
   alias ls='ls -G'
+  # TODO: do not export in bashrc, delegate to bash_profile instead
   export LSCOLORS=ExGxFxFxCxDxDxBABAEAEA
 fi
 
