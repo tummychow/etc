@@ -211,9 +211,9 @@ alias ll='ls -lha'
 if [[ "$(uname)" == Linux ]] ; then
   alias ls='ls --quoting-style=literal --color=auto'
   if which dircolors >/dev/null ; then
-    if [[ -r "${HOME}/.dir_colors" ]] ; then
+    if [[ -f "${HOME}/.dir_colors" ]] ; then
       eval $(dircolors -b "${HOME}/.dir_colors")
-    elif [[ -r '/etc/DIR_COLORS' ]] ; then
+    elif [[ -f '/etc/DIR_COLORS' ]] ; then
       eval $(dircolors -b /etc/DIR_COLORS)
     fi
   fi
@@ -240,13 +240,13 @@ alias cower='cower --color=auto'
 HISTSIZE=-1
 HISTCONTROL=ignoreboth:erasedups
 
-if [[ -r /usr/share/bash-completion/bash_completion ]] ; then
+if [[ -f /usr/share/bash-completion/bash_completion ]] ; then
   source /usr/share/bash-completion/bash_completion
-elif [[ -r /usr/local/share/bash-completion/bash_completion ]] ; then
+elif [[ -f /usr/local/share/bash-completion/bash_completion ]] ; then
   # alternative path, eg for homebrew on osx
   source /usr/local/share/bash-completion/bash_completion
 fi
 
-if [[ -r ~/.bashrc_private ]] ; then
+if [[ -f ~/.bashrc_private ]] ; then
   source ~/.bashrc_private
 fi

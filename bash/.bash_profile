@@ -23,13 +23,13 @@ if [[ "$(uname)" != Linux ]] ; then
   export LESSHISTFILE=-
 fi
 
-if [[ -r ~/.bash_profile_private ]] ; then
+if [[ -f ~/.bash_profile_private ]] ; then
   source ~/.bash_profile_private
 fi
-if [[ -r ~/.bashrc ]] ; then
+if [[ -f ~/.bashrc ]] ; then
   source ~/.bashrc
 fi
 
-if [[ -z "${DISPLAY}" && "${XDG_VTNR}" == 1 && -r ~/.xinitrc ]] ; then
+if [[ -z "${DISPLAY}" && "${XDG_VTNR}" == 1 && -f ~/.xinitrc ]] ; then
   startx
 fi
