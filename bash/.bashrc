@@ -95,23 +95,18 @@ set_ps1() {
   if (( ret )) ; then
     # last command exited nonzero, use bold red
     printf '%b' '\[\e[1;91m\]'
+  elif [[ "${#TTYLVL[@]}" != 0 ]] ; then
+    # we have an interactive ancestor PID, use bold cyan
+    printf '%b' '\[\e[1;96m\]'
   else
-    if [[ "${#TTYLVL[@]}" != 0 ]] ; then
-      # we have an interactive ancestor PID, use bold cyan
-      printf '%b' '\[\e[1;96m\]'
-    else
-      # stick to the standard bold white
-      printf '%b' '\[\e[1;97m\]'
-    fi
+    # stick to the standard bold white
+    printf '%b' '\[\e[1;97m\]'
   fi
 
   # then print the prompt character itself
   if [[ -n "$(jobs -ps)" ]] ; then
     # we have sleeping jobs, print an &
     printf '&'
-  elif (( ret )) ; then
-    # last command exited nonzero, print X
-    printf 'X'
   else
     # print $ (or # if root)
     printf '%s' '\$'
@@ -235,7 +230,6 @@ mcd () { mkdir -p "$@" && eval cd "\"\$$#\"" ; }
 alias dir='dir --color=auto'
 alias grep='grep --color=auto'
 alias dmesg='dmesg --color'
-alias cower='cower --color=auto'
 
 HISTSIZE=-1
 HISTCONTROL=ignoreboth:erasedups
