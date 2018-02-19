@@ -137,29 +137,31 @@ PS4='+'
 # who's using the same tty device as you
 # TODO: does this behave well if inside a terminal multiplexer or ssh?
 declare -a ttypids
-# first we have to use lsof to find programs holding an fd on our tty, we use the
-# tty command to get the tty's path
-# TODO: can we also use fuser -f? (http://pubs.opengroup.org/onlinepubs/9699919799/utilities/fuser.html)
-# TODO: can we use lsof -p ^ to exclude this shell's pid and lsof's own pid?
-# the tty command uses the ttyname function to return the path to the tty of
-# its stdin fd (you can also find the tty from procfs but that's linux-only)
+# first we have to use fuser to find programs holding an fd on our tty
+# the key to parsing fuser output is to ignore stderr, the stdout part is always a
+# space-separated list of pids on a single line
+# http://pubs.opengroup.org/onlinepubs/9699919799/utilities/fuser.html
+# we use the tty command to get the tty's path, which uses the ttyname function
+# on its stdin fd (you can also find the tty from procfs but that's linux-only)
 # http://pubs.opengroup.org/onlinepubs/9699919799/utilities/tty.html
-# then we lsof to find processes holding that tty, excluding lsof itself (-c ^lsof)
-# and listing only their pids (-t)
-# note that if we invoke this inside a subshell it will cause more PIDs to be
-# listed, so we have to do it early
-# the exact subtleties of when extra subshells get listed depends a lot on how you
-# invoke it, whether you pipe it into something, etc, so this is the safest and
-# most predictable approach
-lsofout="$(lsof -c ^lsof -t -- "$(tty)")"
+# we used to use lsof, but lsof 4.90 changed how it handles pseudoterminal devices,
+# so if you lsof for /dev/pts/0, you'll also see processes holding /dev/ptmx (see
+# documentation for +E and -E flags)
+# this is explicitly not what we want, so we have to use fuser instead
+# another nice feature of fuser is that it never lists its own pid, where as lsof
+# had to exclude itself from its own output with the -c flag (which was buggy and
+# couldn't be combined with other flags, notably -E)
+# invoking fuser inside a subshell will cause the subshell's own pid to be listed,
+# but that pid will be eliminated later because it's not an ancestor
+# note that the fuser output is not quoted, so that it expands into separate words
+# for the loop to iterate over
 # now we build up an array whose indices are the pids holding our tty, excluding
 # ourselves
-while read -r ; do
-  if [[ "${REPLY}" != "${$}" ]] ; then
-    ttypids["${REPLY}"]=true
+for pid in $(fuser "$(tty)" 2>/dev/null) ; do
+  if [[ "${pid}" != "${$}" ]] ; then
+    ttypids["${pid}"]=true
   fi
-done <<< "${lsofout}"
-unset -v lsofout
+done
 # this variable will remain declared throughout the shell session
 # to remember how deeply nested the tty is
 declare -a TTYLVL
