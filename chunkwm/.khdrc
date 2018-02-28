@@ -1,5 +1,5 @@
 alt + ctrl + cmd + shift - r : khd -e reload
-alt - escape : /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+alt - escape : khd -p "ctrl + cmd - q"
 
 alt - 0x32 : chunkc tiling::window --close
 
