@@ -1,5 +1,5 @@
-directory: ~/muzak
-library: ~/muzak/beets.db
+directory: ~/music
+library: ~/music/beets.db
 
 import:
   copy: true
@@ -7,7 +7,7 @@ import:
   from_scratch: true
   timid: true
   detail: true
-  log: ~/muzak/import.log
+  log: ~/music/import.log
   languages:
     - en
 
