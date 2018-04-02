@@ -1,4 +1,4 @@
 # configured to be the global gitignore for this system
 # via core.excludesfile
-*.sublime-project
-*.sublime-workspace
+.projectile
+.dir-locals.el
