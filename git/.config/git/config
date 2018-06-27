@@ -88,8 +88,6 @@
 	ui = auto
 [stash]
 	showPatch = true
-[transfer]
-	fsckObjects = true
 [fetch]
 	prune = true
 [push]
