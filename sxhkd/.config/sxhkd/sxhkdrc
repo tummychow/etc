@@ -78,11 +78,11 @@ super + @Print
 
 # bindings for the terminal desktop
 super + z
-  ~/.config/sxhkd/open-or-switch T st
+  ~/.config/sxhkd/open-or-switch T tabbed -c -- st -w
 super + shift + z
   ~/.config/sxhkd/send-to-desktop T
 super + ctrl + z
-  st
+  tabbed -c -- st -w
 
 # bindings for the browser desktop
 super + x
