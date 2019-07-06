@@ -46,7 +46,6 @@ bspc config status_prefix '' || true
 # border/gap/padding config applies to it
 bspc monitor ^1 -d T W E M
 
-bspc rule -a Firefox desktop=W
 bspc rule -a mpv state=floating
 bspc rule -a Pinentry state=floating
 bspc rule -a Sxiv state=fullscreen
