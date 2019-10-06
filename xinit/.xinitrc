@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+if [[ -d "/etc/X11/xinit/xinitrc.d" ]] ; then
+  for F in /etc/X11/xinit/xinitrc.d/*.sh ; do
+    source "${F}"
+  done
+fi
+
 xrandr --output eDP-1 --primary --auto
 xrandr --output HDMI-1 --same-as eDP-1
 
