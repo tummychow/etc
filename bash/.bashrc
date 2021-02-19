@@ -244,9 +244,11 @@ HISTCONTROL=ignoreboth:erasedups
 
 if [[ -f /usr/share/bash-completion/bash_completion ]] ; then
   source /usr/share/bash-completion/bash_completion
-elif [[ -f /usr/local/share/bash-completion/bash_completion ]] ; then
+elif [[ -f /usr/local/etc/profile.d/bash_completion.sh ]] ; then
   # alternative path, eg for homebrew on osx
-  source /usr/local/share/bash-completion/bash_completion
+  # TODO: use brew --prefix instead of hardcoding /usr/local
+  export BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
+  source /usr/local/etc/profile.d/bash_completion.sh
 fi
 
 if [[ -f ~/.bashrc_private ]] ; then
