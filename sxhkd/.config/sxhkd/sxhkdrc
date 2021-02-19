@@ -33,7 +33,7 @@ super + a
 # cycle focus through older/newer windows
 # useful for desktops in monocle, or using floating
 super + {d,f}
-  bspc node {next,prev}.local -f
+  bspc node {next,prev}.!hidden.window.local -f
 
 # super+dir to move focus in that direction
 # super+shift+dir to swap with the window in that direction
