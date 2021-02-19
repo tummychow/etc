@@ -27,6 +27,9 @@ done
 xrdb -merge <<EOF
 Xcursor.theme: Adwaita
 Xcursor.size: 32
+Sxiv.font: Input:size=10:antialias=true
+Sxiv.background: #333333
+Sxiv.foreground: #eeeeee
 EOF
 
 xset s off
