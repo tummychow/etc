@@ -73,21 +73,10 @@ item_fields:
     if disctotal > 1:
         return f'{disc:0{len(str(disctotal))}}-{track:0{len(str(tracktotal))}}'
     return f'{track:0{len(str(tracktotal))}}'
-# requires:
-# - python-gobject
-# - gst-libav
-#   https://cgit.freedesktop.org/gstreamer/gst-libav/tree/docs/plugins/gst-libav-plugins.hierarchy
-# - gst-plugins-base
-#   decodebin
-#   audioconvert
-#   audioresample
-# - gst-plugins-good
-#   rganalysis
 replaygain:
+  backend: ffmpeg
   auto: true
   overwrite: true
-  noclip: true
-  backend: gstreamer
 scrub:
   auto: true
 smartplaylist:
