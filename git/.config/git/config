@@ -5,6 +5,8 @@
 	pager = less
 	autocrlf = input
 	excludesfile = ~/.config/git/ignore
+[feature]
+	manyFiles = true
 [pager]
 	branch = false
 [sequence]
