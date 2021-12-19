@@ -48,7 +48,7 @@ bspc monitor ^1 -d T W E M
 
 bspc rule -a mpv state=floating
 bspc rule -a Pinentry state=floating
-bspc rule -a Sxiv state=fullscreen
+bspc rule -a Nsxiv state=fullscreen
 bspc rule -a Zathura state=fullscreen
 bspc rule -a Qemu-system-x86_64 state=floating
 bspc rule -a Virt-viewer state=floating
