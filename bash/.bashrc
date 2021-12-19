@@ -239,7 +239,9 @@ alias dir='dir --color=auto'
 alias grep='grep --color=auto'
 alias dmesg='dmesg --color'
 
-HISTSIZE=-1
+# any non-numeric value will completely disable history truncation
+# https://superuser.com/a/479727
+HISTSIZE=notanumber
 HISTCONTROL=ignoreboth:erasedups
 
 if [[ -f /usr/share/bash-completion/bash_completion ]] ; then
