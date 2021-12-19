@@ -11,17 +11,21 @@ import:
   languages:
     - en
 
+musicbrainz:
+  genres: false
+
 format_item: '$album ($albumartist) - $artist - $title'
 
 paths:
   default: '${genre}/${albumartist_sort} - ${album}%aunique{}/${disc_track_padded} - ${title}'
   comp: '${genre}/Various Artists - ${album}%aunique{}/${disc_track_padded} - ${title}'
-  singleton: 'singleton/${artist_sort}/${title}'
+  singleton: '${genre}/_/${artist_sort} - ${title}'
 replace:
   '[\\/]': _
   '^\.': _
   '[\x00-\x1f]': _
-  '[<>:"\?\*\|\n]': _
+  '[<>:"\?\*\|\n☆★]': _
+  '[～〜]': '~'
   '\s+$': ''
   '^\s+': ''
 
@@ -36,9 +40,11 @@ plugins:
   - inline
   - mbsync
   - missing
+  - play
   - replaygain
   - scrub
   - smartplaylist
+  - unimported
   - zero
 
 # requires:
@@ -73,6 +79,8 @@ item_fields:
     if disctotal > 1:
         return f'{disc:0{len(str(disctotal))}}-{track:0{len(str(tracktotal))}}'
     return f'{track:0{len(str(tracktotal))}}'
+play:
+  command: mpv
 replaygain:
   backend: ffmpeg
   auto: true
