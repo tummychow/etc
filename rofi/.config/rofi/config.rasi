@@ -1,0 +1,125 @@
+configuration {
+    modi:         "window,run,pass:rofi-pass";
+    terminal:     "st";
+    sidebar-mode: true;
+    monitor:      "-1";
+
+    kb-primary-paste:   "Control+Shift+v";
+    kb-secondary-paste: "Control+v";
+
+    kb-move-front:          "Home";
+    kb-move-end:            "End";
+    kb-move-char-back:      "Left";
+    kb-move-char-forward:   "Right";
+    kb-remove-char-forward: "Delete";
+    kb-remove-char-back:    "BackSpace";
+    kb-accept-entry:        "Return";
+    kb-accept-custom:       "Control+Return";
+
+    kb-mode-next:     "Tab";
+    kb-mode-previous: "Shift+Tab";
+    kb-row-up:        "Up";
+    kb-row-down:      "Down";
+    kb-cancel:        "Escape";
+
+    // clear the default bindings for Tab/Home/End
+    kb-row-tab:   "";
+    kb-row-first: "";
+    kb-row-last:  "";
+}
+
+@theme "/dev/null" // remove default theme
+
+* {
+    // variables
+    theme-bg:           #383838;
+    theme-altbg:        #282828;
+    theme-fg:           #d8d8d8;
+    theme-activefg:     #90d090;
+    theme-urgentfg:     #c87878;
+    theme-border:       3px 0 0;
+    theme-border-color: @theme-fg;
+
+    // defaults
+    background-color: @theme-bg;
+    foreground-color: @theme-fg;
+    text-color:       @theme-fg;
+    border-color:     @theme-border-color;
+    padding:          0;
+    border:           0;
+    spacing:          0;
+    font:             "Input 12";
+}
+
+window {
+    border:   3px;
+    padding:  6px;
+    position: center;
+    anchor:   center;
+    width:    50%;
+}
+
+inputbar {
+    children: [entry, num-filtered-rows, textbox-num-sep, num-rows];
+    padding:  0 0 6px 0;
+}
+textbox-num-sep {
+    str:    "/";
+    expand: false;
+}
+
+listview {
+    border:       @theme-border;
+    padding:      6px 0;
+    scrollbar:    true;
+    lines:        10;
+    fixed-height: true;
+}
+scrollbar {
+    handle-color: @theme-fg;
+    handle-width: 6px;
+}
+
+element-text {
+    padding:          3px;
+    background-color: inherit;
+    text-color:       inherit;
+}
+element alternate {
+    background-color: @theme-altbg;
+}
+element active {
+    text-color: @theme-activefg;
+}
+element alternate active {
+    background-color: @theme-altbg;
+    text-color:       @theme-activefg;
+}
+element urgent {
+    text-color: @theme-urgentfg;
+}
+element alternate urgent {
+    background-color: @theme-altbg;
+    text-color:       @theme-urgentfg;
+}
+element selected {
+    background-color: @theme-fg;
+    text-color:       @theme-bg;
+}
+element selected active {
+    background-color: @theme-activefg;
+}
+element selected urgent {
+    background-color: @theme-urgentfg;
+}
+
+mode-switcher {
+    border: @theme-border;
+}
+button {
+    horizontal-align: 0.5;
+}
+button selected {
+    background-color: @theme-fg;
+    text-color:       @theme-bg;
+}
